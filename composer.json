@@ -1,0 +1,6 @@
+{
+    "require": {
+        "php-curl-class/php-curl-class": "^8.1",
+        "phpmailer/phpmailer": "^6.0"
+    }
+}
