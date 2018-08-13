@@ -22,8 +22,9 @@
 
 *在vps上安装git和lamp环境之类的我就不多赘述了，相信玩域名和vps的人都会，不会的可以去找一键脚本。*
 #### clone本仓库源码
+```bash
 $ clone https://github.com/luolongfei/freenom.git ./
-
+```
 #### 创建crontab定时任务
 ```bash
 1.安装crontabs以及cronie
