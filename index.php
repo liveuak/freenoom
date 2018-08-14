@@ -181,7 +181,7 @@ class FREENOM
 
         $curl->close();
 
-        if (!isset($curl->responseCookies['WHMCSZH5eHTGhfvzP'])) {
+        if (!isset($curl->responseCookies['WHMCSZH5eHTGhfvzP'])) { // freenom有几率出现未成功登录也写此cookie的情况，所以此处不能完全断定是否登录成功，这是freenom的锅。若未成功登录，会在后面匹配域名信息的时候抛出异常。
             throw new LlfException(6002);
         }
 
@@ -267,8 +267,8 @@ class FREENOM
             $this->domainsInfo .= '<a href="http://' . $domain[1] . '/" rel="noopener" target="_blank">' . $domain[1] . '</a>' . '还有<span style="font-weight: bold; font-size: 16px;">' . intval($domain[4]) . '</span>天到期，';
         }
 
+        system_log($renew_log ?: '今天并没有需要续期的域名，写这条日志是为了证明我确实执行了~');
         if ($this->notRenewed || $this->renewed) {
-            system_log($renew_log);
             $this->sendEmail(
                 '主人，我刚刚帮你续期域名啦~',
                 [
