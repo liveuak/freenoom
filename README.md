@@ -17,33 +17,77 @@
 然后丢服务器上，创建crontab定时任务每天自动执行。
 
 #### 原料准备
-- 一台VPS
+- Gmail邮箱
 - 本项目源码
+- 一台VPS
 
-*在vps上安装git和lamp环境之类的我就不多赘述了，相信玩域名和vps的人都会，不会的可以去找一键脚本。*
+#### Gmail邮箱
+*实际上用其它邮箱也行，不过其它邮箱需要改的东西不一样，需要你自己谷歌一下。推荐使用gmail，只需两步。*
+
+1.在设置>转发和POP/IMAP中，勾选
+- 对所有邮件启用 POP 
+- 启用 IMAP
+
+![gmail配置01](https://raw.githubusercontent.com/luolongfei/freenom/master/mail/images/gmail01.png "gmail配置01")
+
+然后保存更改。
+
+2.允许不够安全的应用
+登录谷歌邮箱后，访问[谷歌权限设置界面](https://myaccount.google.com/u/2/lesssecureapps?pli=1&pageId=none)，启用允许不够安全的应用。
+
+![gmail配置02](https://raw.githubusercontent.com/luolongfei/freenom/master/mail/images/gmail02.png "gmail配置02")
+
+3.可能遇到的坑
+- 如果做了上两步操作，依然无法发送邮件，建议将index.php文件中第300行的配置改为
+```php
+$mail->SMTPDebug = 2;
+```
+这样可以直接看到邮件不能发送的原因。
+- 提示允许访问账户
+不允许访问账户，登录谷歌邮箱后，去[gmail的这个界面](https://accounts.google.com/b/0/DisplayUnlockCaptcha)点击允许。这种情况较为少见。
+
+#### VPS
+*在vps上安装git和lamp环境之类的我就不多赘述了，相信玩域名和vps的人都会，不会的可以去找一键脚本。本项目使用php编写，依赖php环境。
+另外，以下操作使用的是Centos7，其它操作系统命令大同小异。*
 #### clone本仓库源码
 ```bash
 $ clone https://github.com/luolongfei/freenom.git ./
 ```
-#### 创建crontab定时任务
+#### 安装crontabs以及cronie
 ```bash
-1.安装crontabs以及cronie
 $ yum -y install cronie crontabs
-
-2.验证
-# 验证crond是否安装及启动
+```
+#### 验证
+##### 验证crond是否安装及启动
+```bash
 $ yum list cronie && systemctl status crond
-# 验证crontab是否安装
+```
+##### 验证crontab是否安装
+```bash
 $ yum list crontabs $$ which crontab && crontab -l
+```
+#### 添加计划任务
+##### 打开任务表单，并编辑
+```bash
+$ crontab -e
 
-3.添加任务
-$ crontab -e # 打开任务表单，并编辑
 # 任务内容如下
 # 此任务的含义是在每天凌晨2点33分执行/data/www/freenom.feifei.ooo/路径下的index.php文件
 # 注意将/data/www/freenom.feifei.ooo/替换为你自己index.php所在路径
 33 2 * * * cd /data/www/freenom.feifei.ooo/; php index.php
-
-$ systemctl restart crond # 重启crond守护进程
-$ systemctl status crond # 查看当前crond状态
-$ crontab -l # 查看当前计划任务列表
 ```
+##### 重启crond守护进程
+```bash
+$ systemctl restart crond
+```
+##### 查看当前crond状态
+```bash
+$ systemctl status crond
+```
+##### 查看当前计划任务列表
+```bash
+$ crontab -l
+```
+最好先创建一个几分钟后执行的任务，测试一下程序能否正常工作，特别是测试邮件推送能否成功（你可以先故意将freenom密码配置改错，执行程序理论上是会收到登录出错或者其它错误的通知邮件的，测完后记得改正确）。
+
+遇到任何问题或bug欢迎提issues，如果这个项目有帮到你，欢迎star~
