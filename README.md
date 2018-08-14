@@ -48,7 +48,7 @@ $mail->SMTPDebug = 2;
 不允许访问账户，登录谷歌邮箱后，去[gmail的这个界面](https://accounts.google.com/b/0/DisplayUnlockCaptcha)点击允许。这种情况较为少见。
 
 #### VPS
-*在vps上安装git和lamp环境之类的我就不多赘述了，相信玩域名和vps的人都会，不会的可以去找一键脚本。本项目使用php编写，依赖php环境。
+*在vps上安装git和lamp环境之类的我就不多赘述了，相信玩域名和vps的人都会，不会的可以去找一键脚本。本项目使用php编写，依赖php环境，且php版本需要>=5.6。
 另外，以下操作使用的是Centos7，其它操作系统命令大同小异。*
 #### clone本仓库源码
 ```bash
