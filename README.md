@@ -44,7 +44,8 @@
 $mail->SMTPDebug = 2;
 ```
 这样可以直接看到邮件不能发送的具体原因。
-- 提示允许访问账户
+- 提示不允许访问账户
+
 不允许访问账户，登录谷歌邮箱后，去[gmail的这个界面](https://accounts.google.com/b/0/DisplayUnlockCaptcha)点击允许。这种情况较为少见。
 
 #### VPS
