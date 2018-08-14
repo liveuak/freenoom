@@ -17,14 +17,14 @@
 然后丢服务器上，创建crontab定时任务每天自动执行。
 
 #### 原料准备
-- Gmail邮箱
+- Gmail邮箱（最好是申请一个新的gmail小号，别用自己的主力邮箱账户）
 - 本项目源码
 - 一台VPS
 
 #### Gmail邮箱
-*实际上用其它邮箱也行，不过其它邮箱需要改的东西不一样，需要你自己谷歌一下。推荐使用gmail，只需两步。最好是申请一个新的gmail小号，别用自己的主力邮箱账户*
+*实际上用其它邮箱也行，不过其它邮箱需要改的东西不一样，需要你自己谷歌一下。推荐使用gmail，只需两步。*
 
-1.在`设置>转发和POP/IMAP`中，勾选
+1、在`设置>转发和POP/IMAP`中，勾选
 - 对所有邮件启用 POP 
 - 启用 IMAP
 
@@ -32,12 +32,13 @@
 
 然后保存更改。
 
-2.允许不够安全的应用
+2、允许不够安全的应用
+
 登录谷歌邮箱后，访问[谷歌权限设置界面](https://myaccount.google.com/u/2/lesssecureapps?pli=1&pageId=none)，启用允许不够安全的应用。
 
 ![gmail配置02](https://raw.githubusercontent.com/luolongfei/freenom/master/mail/images/gmail02.png "gmail配置02")
 
-3.可能遇到的坑
+3、可能遇到的坑
 - 如果做了上两步操作，依然无法发送邮件，建议将index.php文件中第300行的配置改为
 ```php
 $mail->SMTPDebug = 2;
