@@ -238,7 +238,7 @@ class FREENOM
          */
         $renew_log = '';
         foreach ($domains as $domain) {
-            if ($domain[3] === 'textred') { // textred = 待续期 textgreen = 无需续期
+            if (intval($domain[4]) <= 14) { // 免费域名只允许在到期前14天内续期
                 $curl->setReferrer('https://my.freenom.com/domains.php?a=renewdomain&domain=' . $domain[5]);
                 $curl->setHeader('Content-Type', 'application/x-www-form-urlencoded');
                 $curl->post(static::RENEW_DOMAIN_URL, [
