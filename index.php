@@ -8,6 +8,7 @@
 
 error_reporting(E_ERROR);
 ini_set('display_errors', 1);
+set_time_limit(0);
 
 define('IS_CLI', PHP_SAPI === 'cli' ? true : false);
 define('DS', DIRECTORY_SEPARATOR);
@@ -115,26 +116,32 @@ class FREENOM
      * @var int curl超时秒数
      */
     protected static $timeOut = 20;
+
     /**
      * @var string 储存用户登录状态的cookie
      */
     protected static $authCookie;
+
     /**
      * @var string 匹配token的正则
      */
     private static $tokenRegex = '/name="token" value="([^"]+)"/i';
+
     /**
      * @var string 匹配域名信息的正则
      */
     private static $domainInfoRegex = '/<tr><td>([^<]+)<\/td><td>([^<]+)<\/td><td>[^<]+<span class="([^"]+)">([^<]+)<\/span>[^&]+&domain=(\d+)"/i';
+
     /**
      * @var string 记录续期出错的域名，用于邮件通知内容
      */
     public $notRenewed = '';
+
     /**
      * @var string 续期成功的域名
      */
     public $renewed = '';
+
     /**
      * @var string 域名状态信息，用于邮件通知内容
      */
@@ -256,18 +263,18 @@ class FREENOM
 
                 if (stripos($curl->rawResponse, 'Order Confirmation') === false) { // 续期失败
                     $renew_log .= $domain[1] . '续期失败' . "\n";
-                    $this->notRenewed .= '<a href="http://' . $domain[1] . '/" rel="noopener" target="_blank">' . $domain[1] . '</a>';
+                    $this->notRenewed .= sprintf('<a href="http://%s/" rel="noopener" target="_blank">%s</a>', $domain[1], $domain[1]);
                 } else {
                     $renew_log .= $domain[1] . '续期成功' . "\n";
-                    $this->renewed .= '<a href="http://' . $domain[1] . '/" rel="noopener" target="_blank">' . $domain[1] . '</a>';
+                    $this->renewed .= sprintf('<a href="http://%s/" rel="noopener" target="_blank">%s</a>', $domain[1], $domain[1]);
                     continue;
                 }
             }
 
-            $this->domainsInfo .= '<a href="http://' . $domain[1] . '/" rel="noopener" target="_blank">' . $domain[1] . '</a>' . '还有<span style="font-weight: bold; font-size: 16px;">' . intval($domain[4]) . '</span>天到期，';
+            $this->domainsInfo .= sprintf('<a href="http://%s/" rel="noopener" target="_blank">%s</a>' . '还有<span style="font-weight: bold; font-size: 16px;">%d</span>天到期，', $domain[1], $domain[1], intval($domain[4]));
         }
 
-        system_log($renew_log ?: '今天并没有需要续期的域名，写这条日志是为了证明我确实执行了~');
+        system_log($renew_log ?: sprintf("在%s这个时刻，并没有需要续期的域名，写这条日志是为了证明我确实执行了。今次取得的域名信息如是：\n%s", date('Y-m-d H:i:s'), var_export($domains, true)));
         if ($this->notRenewed || $this->renewed) {
             $this->sendEmail(
                 '主人，我刚刚帮你续期域名啦~',
