@@ -53,7 +53,7 @@ $mail->SMTPDebug = 2;
 另外，以下操作使用的是Centos7，其它操作系统命令大同小异。*
 #### clone本仓库源码
 ```bash
-$ clone https://github.com/luolongfei/freenom.git ./
+$ git clone https://github.com/luolongfei/freenom.git ./
 ```
 #### 安装crontabs以及cronie
 ```bash
