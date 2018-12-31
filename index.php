@@ -304,7 +304,7 @@ class FREENOM
         $mail = new PHPMailer(true);
 
         // 邮件服务配置
-        $mail->SMTPDebug = 0; // debug，正式环境应关闭 0：关闭 1：客户端信息 2：客户端和服务端信息
+        $mail->SMTPDebug = static::$config['mail']['debug']; // debug，正式环境应关闭 0：关闭 1：客户端信息 2：客户端和服务端信息
         $mail->isSMTP(); // 告诉PHPMailer使用SMTP
         $mail->Host = 'smtp.gmail.com'; // SMTP服务器
         $mail->SMTPAuth = true; // 启用SMTP身份验证

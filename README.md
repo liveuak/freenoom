@@ -1,16 +1,19 @@
 # freenom：freenom域名自动续期
 
+[![Build Status](https://scrutinizer-ci.com/g/luolongfei/freenom/badges/build.png?b=master)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
+[![Php Version](https://img.shields.io/badge/php-%3E=5.6-brightgreen.svg)](https://secure.php.net/)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/luolongfei/freenom/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/luolongfei/freenom/blob/master/LICENSE)
+
 ### 前言
 众所周知，freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
-所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。curl依然用的是第三方轮子[php-curl-class](https://github.com/php-curl-class/php-curl-class)，
-这个轮子的作者人挺不错，回复贼快。
+所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。
 
 ### 效果
-![邮件示例](https://raw.githubusercontent.com/luolongfei/freenom/master/mail/images/Snipaste_2018-08-13_15-58-52.png "邮件内容")
+![邮件示例](https://ws1.sinaimg.cn/large/a4d9cbc6ly1fypxmb6lgfj20g10fh7wh.jpg "邮件内容")
 
-可能需要科学上网才能看到效果图片。用crontab创建定时任务后，每天自动执行脚本查看域名是否需要续期，有需要续期的就续期。无论是续期成功或者失败或者脚本执行出错，都会收到的程序发出的通知邮件。如果是续期成败相关的邮件，
-邮件会包括未续期域名的到期天数等内容。邮件发送功能依赖[PHPMailer](https://github.com/PHPMailer/PHPMailer/)。
-话说一开始这个邮件内容的样式很丑，我调了好久，迭代了几个版本，还参考了微信发送的注销公众号的邮件样式，最终看到的这个效果还算满意了。
+无论是续期成败或者脚本执行出错，都会收到的程序发出的邮件。如果是续期成败相关的邮件，邮件会包括未续期域名的到期天数等内容。
+邮件参考了微信发送的注销公众号的邮件样式，微调一把，现在看到的这个效果还算满意。
 
 ### 使用方法
 一言以蔽之。将config.php中的freenom账号和freenom密码改为自己的，以及邮箱账户和邮箱密码也改为自己的，配置文件里都有注释，根据感觉改。
@@ -28,7 +31,7 @@
 - 对所有邮件启用 POP 
 - 启用 IMAP
 
-![gmail配置01](https://raw.githubusercontent.com/luolongfei/freenom/master/mail/images/gmail01.png "gmail配置01")
+![gmail配置01](https://ws1.sinaimg.cn/large/a4d9cbc6ly1fypxv92xm6j20j607ydg0.jpg "gmail配置01")
 
 然后保存更改。
 
@@ -36,12 +39,14 @@
 
 登录谷歌邮箱后，访问[谷歌权限设置界面](https://myaccount.google.com/u/2/lesssecureapps?pli=1&pageId=none)，启用允许不够安全的应用。
 
-![gmail配置02](https://raw.githubusercontent.com/luolongfei/freenom/master/mail/images/gmail02.png "gmail配置02")
+![gmail配置02](https://ws1.sinaimg.cn/large/a4d9cbc6ly1fypxvusmftj20k7060wek.jpg "gmail配置02")
 
 3、可能遇到的坑
-- 如果做了上两步操作，依然无法发送邮件，建议将index.php文件中第300行的配置改为
+- 如果做了上两步操作，依然无法发送邮件，就将config.php中的mail键下的debug的值改为2，然后再手动执行，观察命令行输出：
 ```php
-$mail->SMTPDebug = 2;
+'mail' => [
+        'debug' => 2
+    ],
 ```
 这样可以直接看到邮件不能发送的具体原因。
 - 提示不允许访问账户
@@ -74,9 +79,9 @@ $ yum list crontabs $$ which crontab && crontab -l
 $ crontab -e
 
 # 任务内容如下
-# 此任务的含义是在每天凌晨2点33分执行/data/www/freenom.feifei.ooo/路径下的index.php文件
+# 此任务的含义是在每天早上8点执行/data/www/freenom.feifei.ooo/路径下的index.php文件
 # 注意将/data/www/freenom.feifei.ooo/替换为你自己index.php所在路径
-33 2 * * * cd /data/www/freenom.feifei.ooo/; php index.php
+00 08 * * * cd /data/www/freenom.feifei.ooo/; php index.php >/dev/null 2>&1
 ```
 ##### 重启crond守护进程
 ```bash
@@ -90,6 +95,43 @@ $ systemctl status crond
 ```bash
 $ crontab -l
 ```
-最好先创建一个几分钟后执行的任务，测试一下程序能否正常工作，特别是测试邮件推送能否成功（你可以先故意将freenom密码配置改错，执行程序理论上是会收到登录出错或者其它错误的通知邮件的，测完后记得改正确）。
+你可以先创建一个几分钟后执行的任务，测试一下程序能否正常工作，特别是测试邮件推送能否成功：你可以先故意将freenom密码配置改错，
+执行程序理论上会收到登录出错或者其它错误的通知邮件的，测完后记得改正确。
+**有很多人问我为什么执行成功了也没收到邮件：因为没有需要续期的域名，程序执行也没出错。**
 
-遇到任何问题或bug欢迎提issues，如果freenom改变算法导致此项目失效，请提issues告知，我会及时修复，不出意外的话此项目会一直维护下去。如果这个项目有帮到你，欢迎star~
+遇到任何问题或bug欢迎提[issues](https://github.com/luolongfei/freenom/issues)，如果freenom改变算法导致此项目失效，
+请提[issues](https://github.com/luolongfei/freenom/issues)告知，我会及时修复，本项目长期维护。欢迎star~
+
+### 捐赠
+
+如果这个项目有帮到你，可以请作者喝一杯 [ 咖啡 ]🍺，开源不求盈利，多少随意~
+![pay](https://ws1.sinaimg.cn/large/a4d9cbc6gy1fyq22ype68j20jy0e5e81.jpg)
+
+
+### 捐赠列表
+
+此处仅展示最新20条赞赏，如果你赞赏了，可以在赞赏留言中写明或者请联系mybsdc@gmail.com为你添加。
+
+金额 | 渠道 | 捐赠者 | 留言
+:-----------: | :-----------: | :-----------: | :-----------:
+¥20.00|支付宝|zoe***@126.com|
+¥6.66|支付宝|jenchih 393***@qq.com| 
+¥8.00|微信|匿名|非常感谢开发者的辛苦付出
+¥8.68|微信|匿名|
+¥5.00|微信|匿名|
+¥30|微信|匿名|一点点心意
+¥188|微信|xiaojingdou|感谢！省了不少时间！
+¥68|支付宝|asdf***@163.com|	
+¥66|支付宝|zhangw***@126.com|为你的项目点赞👍
+¥88|微信|匿名|
+¥50|支付宝|佳南 ux_***@yahoo.cn|
+¥66.00|支付宝|驰 514***@qq.com|
+¥20|微信|匿名|
+¥10.00|支付宝|jenchih 393***@qq.com|
+
+### 鸣谢
+- [PHPMailer](https://github.com/PHPMailer/PHPMailer/)（邮件发送功能依赖此库）
+- [php-curl-class](https://github.com/php-curl-class/php-curl-class)（Curl库）
+
+### 开源协议
+[MIT](https://opensource.org/licenses/mit-license.php)
