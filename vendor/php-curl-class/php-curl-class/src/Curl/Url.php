@@ -2,7 +2,7 @@
 
 namespace Curl;
 
-use Curl\StrUtil;
+use Curl\StringUtil;
 
 class Url
 {
@@ -36,15 +36,15 @@ class Url
         while (!empty($input)) {
             // A.  If the input buffer begins with a prefix of "../" or "./",
             //     then remove that prefix from the input buffer; otherwise,
-            if (StrUtil::startsWith($input, '../')) {
+            if (StringUtil::startsWith($input, '../')) {
                 $input = substr($input, 3);
-            } elseif (StrUtil::startsWith($input, './')) {
+            } elseif (StringUtil::startsWith($input, './')) {
                 $input = substr($input, 2);
 
             // B.  if the input buffer begins with a prefix of "/./" or "/.",
             //     where "." is a complete path segment, then replace that
             //     prefix with "/" in the input buffer; otherwise,
-            } elseif (StrUtil::startsWith($input, '/./')) {
+            } elseif (StringUtil::startsWith($input, '/./')) {
                 $input = substr($input, 2);
             } elseif ($input === '/.') {
                 $input = '/';
@@ -54,12 +54,12 @@ class Url
             //     prefix with "/" in the input buffer and remove the last
             //     segment and its preceding "/" (if any) from the output
             //     buffer; otherwise,
-            } elseif (StrUtil::startsWith($input, '/../')) {
+            } elseif (StringUtil::startsWith($input, '/../')) {
                 $input = substr($input, 3);
-                $output = substr_replace($output, '', \mb_strrpos($output, '/'));
+                $output = substr_replace($output, '', StringUtil::reversePosition($output, '/'));
             } elseif ($input === '/..') {
                 $input = '/';
-                $output = substr_replace($output, '', \mb_strrpos($output, '/'));
+                $output = substr_replace($output, '', StringUtil::reversePosition($output, '/'));
 
             // D.  if the input buffer consists only of "." or "..", then remove
             //     that from the input buffer; otherwise,
@@ -70,7 +70,7 @@ class Url
             //     the output buffer, including the initial "/" character (if
             //     any) and any subsequent characters up to, but not including,
             //     the next "/" character or the end of the input buffer.
-            } elseif (!(($pos = \mb_strpos($input, '/', 1)) === false)) {
+            } elseif (!(($pos = StringUtil::position($input, '/', 1)) === false)) {
                 $output .= substr($input, 0, $pos);
                 $input = substr_replace($input, '', 0, $pos);
             } else {
@@ -128,10 +128,10 @@ class Url
                     $target['path'] = $b['path'];
                     $target['query'] = isset($r['query']) ? $r['query'] : (isset($b['query']) ? $b['query'] : null);
                 } else {
-                    if (StrUtil::startsWith($r['path'], '/')) {
+                    if (StringUtil::startsWith($r['path'], '/')) {
                         $target['path'] = self::removeDotSegments($r['path']);
                     } else {
-                        $base = \mb_strrchr($b['path'], '/', true);
+                        $base = StringUtil::characterReversePosition($b['path'], '/', true);
                         if ($base === false) {
                             $base = '';
                         }
@@ -192,16 +192,17 @@ class Url
      *
      * Combine url components into a url.
      */
-    private function unparseUrl($parsed_url) {
-        $scheme   = isset($parsed_url['scheme'])   ? $parsed_url['scheme'] . '://' : '';
-        $host     = isset($parsed_url['host'])     ? $parsed_url['host'] : '';
-        $port     = isset($parsed_url['port'])     ? ':' . $parsed_url['port'] : '';
-        $user     = isset($parsed_url['user'])     ? $parsed_url['user'] : '';
-        $pass     = isset($parsed_url['pass'])     ? ':' . $parsed_url['pass'] : '';
-        $pass     = ($user || $pass)               ? $pass . '@' : '';
-        $path     = isset($parsed_url['path'])     ? $parsed_url['path'] : '';
-        $query    = isset($parsed_url['query'])    ? '?' . $parsed_url['query'] : '';
-        $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
+    private function unparseUrl($parsed_url)
+    {
+        $scheme   = isset($parsed_url['scheme'])   ?       $parsed_url['scheme'] . '://' : '';
+        $user     = isset($parsed_url['user'])     ?       $parsed_url['user']           : '';
+        $pass     = isset($parsed_url['pass'])     ? ':' . $parsed_url['pass']           : '';
+        $pass     = ($user || $pass)               ?       $pass . '@'                   : '';
+        $host     = isset($parsed_url['host'])     ?       $parsed_url['host']           : '';
+        $port     = isset($parsed_url['port'])     ? ':' . $parsed_url['port']           : '';
+        $path     = isset($parsed_url['path'])     ?       $parsed_url['path']           : '';
+        $query    = isset($parsed_url['query'])    ? '?' . $parsed_url['query']          : '';
+        $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment']       : '';
         $unparsed_url =  $scheme . $user . $pass . $host . $port . $path . $query . $fragment;
         return $unparsed_url;
     }

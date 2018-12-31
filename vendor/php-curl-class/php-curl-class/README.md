@@ -34,7 +34,7 @@ For latest commit version:
 
 ### Requirements
 
-PHP Curl Class works with PHP 5.3, 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, and HHVM.
+PHP Curl Class works with PHP 5.3, 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, and HHVM.
 
 ### Quick Start and Examples
 
@@ -207,12 +207,43 @@ Curl::error($callback)
 Curl::exec($ch = null)
 Curl::execDone()
 Curl::get($url, $data = array())
+Curl::getAttempts()
+Curl::getBeforeSendCallback()
+Curl::getCompleteCallback()
 Curl::getCookie($key)
+Curl::getCurl()
+Curl::getCurlErrorCode()
+Curl::getCurlErrorMessage()
+Curl::getDownloadCompleteCallback()
+Curl::getDownloadFileName()
+Curl::getErrorCallback()
+Curl::getErrorCode()
+Curl::getErrorMessage()
+Curl::getFileHandle()
+Curl::getHttpErrorMessage()
+Curl::getHttpStatusCode()
+Curl::getId()
 Curl::getInfo($opt = null)
+Curl::getJsonDecoder()
 Curl::getOpt($option)
+Curl::getRawResponse()
+Curl::getRawResponseHeaders()
+Curl::getRemainingRetries()
+Curl::getRequestHeaders()
+Curl::getResponse()
 Curl::getResponseCookie($key)
 Curl::getResponseCookies()
+Curl::getResponseHeaders()
+Curl::getRetries()
+Curl::getRetryDecider()
+Curl::getSuccessCallback()
+Curl::getUrl()
+Curl::getXmlDecoder()
 Curl::head($url, $data = array())
+Curl::isChildOfMultiCurl()
+Curl::isCurlError()
+Curl::isError()
+Curl::isHttpError()
 Curl::options($url, $data = array())
 Curl::patch($url, $data = array())
 Curl::post($url, $data = '', $follow_303_with_post = false)
@@ -241,6 +272,10 @@ Curl::setMaxFilesize($bytes)
 Curl::setOpt($option, $value)
 Curl::setOpts($options)
 Curl::setPort($port)
+Curl::setProxy($proxy, $port = null, $username = null, $password = null)
+Curl::setProxyAuth($auth)
+Curl::setProxyTunnel($tunnel = true)
+Curl::setProxyType($type)
 Curl::setReferer($referer)
 Curl::setReferrer($referrer)
 Curl::setRetry($mixed)
@@ -250,6 +285,7 @@ Curl::setUserAgent($user_agent)
 Curl::setXmlDecoder($mixed)
 Curl::success($callback)
 Curl::unsetHeader($key)
+Curl::unsetProxy()
 Curl::verbose($on = true, $output = STDERR)
 MultiCurl::__construct($base_url = null)
 MultiCurl::__destruct()
@@ -314,7 +350,14 @@ To run tests:
     $ composer update
     $ ./tests/run.sh
 
+To test all PHP versions in containers:
+
+    $ git clone https://github.com/php-curl-class/php-curl-class.git
+    $ cd php-curl-class/
+    $ ./tests/test_all.sh
+
 ### Contribute
+
 1. Check for open issues or open a new issue to start a discussion around a bug or feature.
 1. Fork the repository on GitHub to start making your changes.
 1. Write one or more tests for the new feature or that expose the bug.
