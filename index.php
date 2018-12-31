@@ -58,7 +58,7 @@ function exception_handler($e)
  * @param array|string $logContent 日志内容
  * @param string $mark LOG | ERROR | WARNING 日志标志
  */
-function system_log($logContent, $mark = 'ERROR')
+function system_log($logContent, $mark = 'LOG')
 {
     try {
         $logPath = __DIR__ . '/logs/' . date('Y') . '/' . date('m') . '/';
@@ -80,7 +80,7 @@ function system_log($logContent, $mark = 'ERROR')
 
         fclose($handle);
     } catch (\Exception $e) {
-        // DO NOTHING
+        // do nothing
     }
 }
 
