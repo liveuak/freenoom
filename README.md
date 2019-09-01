@@ -1,9 +1,9 @@
 # freenom：freenom域名自动续期
 
-[![Build Status](https://scrutinizer-ci.com/g/luolongfei/freenom/badges/build.png?b=master)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
-[![Php Version](https://img.shields.io/badge/php-%3E=5.6-brightgreen.svg)](https://secure.php.net/)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/luolongfei/freenom/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/luolongfei/freenom/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passed-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
+[![Php Version](https://img.shields.io/badge/php-%3E=5.6-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
+[![Scrutinizer Code Quality](https://img.shields.io/badge/scrutinizer-9.07-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/master/LICENSE)
 
 ### 前言
 众所周知，freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
@@ -104,31 +104,11 @@ $ crontab -l
 
 ### 捐赠
 
-如果这个项目有帮到你，可以请作者喝杯果汁或者加个卤蛋。项目的发展离不开大家的支持，无论是star或者donate，本人都衷心的感谢各位，也会尽自己的绵薄之力一直维护下去。
+![pay](https://ws4.sinaimg.cn/large/a4d9cbc6ly1g6jt1sq9fhj20ds084187.jpg)
 
-![pay](https://ws1.sinaimg.cn/large/a4d9cbc6gy1fyq22ype68j20jy0e5e81.jpg)
+![每一次你花的钱都是在为你想要的世界投票。](https://wx4.sinaimg.cn/large/a4d9cbc6ly1g6jsosq372j20g807uqkk.jpg)
 
-
-### 捐赠列表
-
-此处仅展示最新20条赞赏，如果你赞赏了，可以在赞赏留言中写明或者请联系mybsdc@gmail.com为你添加。
-
-金额 | 渠道 | 捐赠者 | 留言
-:-----------: | :-----------: | :-----------: | :-----------:
-¥20.00|支付宝|zoe***@126.com|
-¥6.66|支付宝|jenchih 393***@qq.com| 
-¥8.00|微信|匿名|非常感谢开发者的辛苦付出
-¥8.68|微信|匿名|
-¥5.00|微信|匿名|
-¥30|微信|匿名|一点点心意
-¥188|微信|xiaojingdou|感谢！省了不少时间！
-¥68|支付宝|asdf***@163.com|	
-¥66|支付宝|zhangw***@126.com|为你的项目点赞👍
-¥88|微信|匿名|
-¥50|支付宝|佳南 ux_***@yahoo.cn|
-¥66.00|支付宝|驰 514***@qq.com|
-¥20|微信|匿名|
-¥10.00|支付宝|jenchih 393***@qq.com|
+开源不求盈利，多少随缘...star也是一种支持。
 
 ### 鸣谢
 - [PHPMailer](https://github.com/PHPMailer/PHPMailer/)（邮件发送功能依赖此库）
