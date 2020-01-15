@@ -2,6 +2,8 @@
 
 namespace Curl;
 
+use Curl\ArrayUtil;
+
 class MultiCurl
 {
     public $baseUrl = null;
@@ -23,6 +25,7 @@ class MultiCurl
     private $cookies = array();
     private $headers = array();
     private $options = array();
+    private $proxies = null;
 
     private $jsonDecoder = null;
     private $xmlDecoder = null;
@@ -82,15 +85,41 @@ class MultiCurl
 
         // Use tmpfile() or php://temp to avoid "Too many open files" error.
         if (is_callable($mixed_filename)) {
-            $callback = $mixed_filename;
-            $curl->downloadCompleteCallback = $callback;
+            $curl->downloadCompleteCallback = $mixed_filename;
+            $curl->downloadFileName = null;
             $curl->fileHandle = tmpfile();
         } else {
             $filename = $mixed_filename;
-            $curl->downloadCompleteCallback = function ($instance, $fh) use ($filename) {
-                file_put_contents($filename, stream_get_contents($fh));
-            };
-            $curl->fileHandle = fopen('php://temp', 'wb');
+
+            // Use a temporary file when downloading. Not using a temporary file can cause an error when an existing
+            // file has already fully completed downloading and a new download is started with the same destination save
+            // path. The download request will include header "Range: bytes=$filesize-" which is syntactically valid,
+            // but unsatisfiable.
+            $download_filename = $filename . '.pccdownload';
+            $this->downloadFileName = $download_filename;
+
+            // Attempt to resume download only when a temporary download file exists and is not empty.
+            if (is_file($download_filename) && $filesize = filesize($download_filename)) {
+                $first_byte_position = $filesize;
+                $range = $first_byte_position . '-';
+                $curl->setOpt(CURLOPT_RANGE, $range);
+                $curl->fileHandle = fopen($download_filename, 'ab');
+
+                // Move the downloaded temporary file to the destination save path.
+                $curl->downloadCompleteCallback = function ($instance, $fh) use ($download_filename, $filename) {
+                    // Close the open file handle before renaming the file.
+                    if (is_resource($fh)) {
+                        fclose($fh);
+                    }
+
+                    rename($download_filename, $filename);
+                };
+            } else {
+                $curl->fileHandle = fopen('php://temp', 'wb');
+                $curl->downloadCompleteCallback = function ($instance, $fh) use ($filename) {
+                    file_put_contents($filename, stream_get_contents($fh));
+                };
+            }
         }
 
         $curl->setOpt(CURLOPT_FILE, $curl->fileHandle);
@@ -550,6 +579,94 @@ class MultiCurl
     }
 
     /**
+     * Set Proxy
+     *
+     * Set an HTTP proxy to tunnel requests through.
+     *
+     * @access public
+     * @param  $proxy - The HTTP proxy to tunnel requests through. May include port number.
+     * @param  $port - The port number of the proxy to connect to. This port number can also be set in $proxy.
+     * @param  $username - The username to use for the connection to the proxy.
+     * @param  $password - The password to use for the connection to the proxy.
+     */
+    public function setProxy($proxy, $port = null, $username = null, $password = null)
+    {
+        $this->setOpt(CURLOPT_PROXY, $proxy);
+        if ($port !== null) {
+            $this->setOpt(CURLOPT_PROXYPORT, $port);
+        }
+        if ($username !== null && $password !== null) {
+            $this->setOpt(CURLOPT_PROXYUSERPWD, $username . ':' . $password);
+        }
+    }
+
+    /**
+     * Set Proxies
+     *
+     * Set proxies to tunnel requests through. When set, a random proxy will be
+     * used for the request.
+     *
+     * @access public
+     * @param  $proxies array - A list of HTTP proxies to tunnel requests
+     *     through. May include port number.
+     */
+    public function setProxies($proxies)
+    {
+        $this->proxies = $proxies;
+    }
+
+    /**
+     * Set Proxy Auth
+     *
+     * Set the HTTP authentication method(s) to use for the proxy connection.
+     *
+     * @access public
+     * @param  $auth
+     */
+    public function setProxyAuth($auth)
+    {
+        $this->setOpt(CURLOPT_PROXYAUTH, $auth);
+    }
+
+    /**
+     * Set Proxy Type
+     *
+     * Set the proxy protocol type.
+     *
+     * @access public
+     * @param  $type
+     */
+    public function setProxyType($type)
+    {
+        $this->setOpt(CURLOPT_PROXYTYPE, $type);
+    }
+
+    /**
+     * Set Proxy Tunnel
+     *
+     * Set the proxy to tunnel through HTTP proxy.
+     *
+     * @access public
+     * @param  $tunnel boolean
+     */
+    public function setProxyTunnel($tunnel = true)
+    {
+        $this->setOpt(CURLOPT_HTTPPROXYTUNNEL, $tunnel);
+    }
+
+    /**
+     * Unset Proxy
+     *
+     * Disable use of the proxy.
+     *
+     * @access public
+     */
+    public function unsetProxy()
+    {
+        $this->setOpt(CURLOPT_PROXY, null);
+    }
+
+    /**
      * Set Opt
      *
      * @access public
@@ -599,8 +716,13 @@ class MultiCurl
     /**
      * Set Retry
      *
-     * Number of retries to attempt or decider callable. Maximum number of
-     * attempts is $maximum_number_of_retries + 1.
+     * Number of retries to attempt or decider callable.
+     *
+     * When using a number of retries to attempt, the maximum number of attempts
+     * for the request is $maximum_number_of_retries + 1.
+     *
+     * When using a callable decider, the request will be retried until the
+     * function returns a value which evaluates to false.
      *
      * @access public
      * @param  $mixed
@@ -689,7 +811,7 @@ class MultiCurl
                                 curl_multi_remove_handle($this->multiCurl, $curl->curl);
 
                                 $curlm_error_code = curl_multi_add_handle($this->multiCurl, $curl->curl);
-                                if (!($curlm_error_code === CURLM_OK)) {
+                                if ($curlm_error_code !== CURLM_OK) {
                                     throw new \ErrorException(
                                         'cURL multi add handle error: ' . curl_multi_strerror($curlm_error_code)
                                     );
@@ -853,8 +975,15 @@ class MultiCurl
         $curl->setRetry($this->retry);
         $curl->setCookies($this->cookies);
 
+        // Use a random proxy for the curl instance when proxies have been set
+        // and the curl instance doesn't already have a proxy set.
+        if (is_array($this->proxies) && $curl->getOpt(CURLOPT_PROXY) === null) {
+            $random_proxy = ArrayUtil::arrayRandom($this->proxies);
+            $curl->setProxy($random_proxy);
+        }
+
         $curlm_error_code = curl_multi_add_handle($this->multiCurl, $curl->curl);
-        if (!($curlm_error_code === CURLM_OK)) {
+        if ($curlm_error_code !== CURLM_OK) {
             throw new \ErrorException('cURL multi add handle error: ' . curl_multi_strerror($curlm_error_code));
         }
 
