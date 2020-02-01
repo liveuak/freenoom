@@ -65,7 +65,7 @@ $ vim .env
 # e.g. MULTIPLE_ACCOUNTS='<account1>@<password1>|<account2>@<password2>|<account3>@<password3>'
 # Of course, if you only have a single account, you only need to configure FREEENOM_USERNAME and FREEENOM_PASSWORD. The configurations of single account and multiple accounts will be read together and duplicated.
 
-# After editing, press "Esc" to return to the command mode, enter ": wq" and press Enter to save and exit. You will not use Google's editor to ask Google Uncle :)
+# After editing, press "Esc" to return to the command mode, enter ":wq" and press Enter to save and exit. If you don't use vim editor, you can ask Uncle Google. :)
 ```
 
 #### Add scheduled task
