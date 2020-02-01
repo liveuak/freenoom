@@ -15,7 +15,7 @@ So I felt frustrated every time I renewed, so I wrote this automatic renewal scr
 Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the program. In the case of a renewal success or failure email, the email will include the number of days that the domain name has not been renewed.
 The email refers to the email style of the unregistered public account sent by WeChat.
 
-### a
+### Preparation
 - Mailbox: For the sake of understanding, it is also called robot mailbox, which is used to send notification emails.
 - Mailbox: Used to receive notification emails sent by robots.
 - VPS: Any server can be used. The system recommends `Centos7`, and the PHP version must be` php7.1` or above.
