@@ -5,7 +5,7 @@
 [![Scrutinizer Code Quality](https://img.shields.io/badge/scrutinizer-9.07-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/master/LICENSE)
 
-### Origin
+### Why write this script
 As we all know, Freenom is the only merchant on the planet that provides free top-level domain names, but it needs to be renewed every year for up to one year at a time. Since I applied for a bunch of domain names, and not at the same time,
 So I felt frustrated every time I renewed, so I wrote this automatic renewal script.
 
@@ -15,13 +15,13 @@ So I felt frustrated every time I renewed, so I wrote this automatic renewal scr
 Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the program. In the case of a renewal success or failure email, the email will include the number of days that the domain name has not been renewed.
 
 ### Preparation
-- Mailbox: For the sake of understanding, it is also called robot mailbox, which is used to send notification emails.
-- Mailbox: Used to receive notification emails sent by robots.
+- Email of robot: Used to send notification emails.
+- Your email: Used to receive notification emails sent by robots.
 - VPS: Any server can be used. The system recommends `Centos7`, and the PHP version must be` php7.1` or above.
 - No more
 
 ### Setting up Gmail
-1.In `Settings> Forwarding and POP / IMAP`, tick
+1.In `Settings > Forwarding and POP/IMAP`, tick
 - Enable POP for all messages
 - Enable IMAP
 
@@ -46,8 +46,8 @@ After logging in to Google Mail, go to [this interface of gmail](https://account
 All operations are performed under Centos7 system, other Linux distributions are similar
 #### Get the source code
 ```bash
-$ mkdir -p / data / wwwroot / freenom
-$ cd / data / wwwroot / freenom
+$ mkdir -p /data/wwwroot/freenom
+$ cd /data/wwwroot/freenom
 
 # clone the repository source
 $ git clone https://github.com/luolongfei/freenom.git ./
@@ -85,9 +85,9 @@ $ yum list crontabs $$ which crontab && crontab -l
 $ crontab -e
 
 # Task content is as follows
-# The meaning of this task is to execute the run file under / data / wwwroot / freenom / at 9 AM every day
-# Note that replace / data / wwwroot / freenom / with the path where your run file is located
-00 09 * * * cd / data / wwwroot / freenom / && php run> / dev / null 2> & 1
+# The meaning of this task is to execute the run file under /data/wwwroot/freenom/ at 9 AM every day
+# Note that replace /data/wwwroot/freenom/ with the path where your run file is located
+00 09 * * * cd /data/wwwroot/freenom/ && php run >/dev/null 2>&1
 ```
 
 ##### Restart the crond daemon
@@ -101,7 +101,7 @@ To check if `Scheduled Task` is normal, you can also add a temporary` Scheduled 
 #### Verification
 You can first change the value of `noticeFreq` in` config.php` to 1 (that is, send an email notification each time), and then execute
 ```bash
-$ cd / data / wwwroot / freenom / && php run
+$ cd /data/wwwroot/freenom/ && php run
 ```
 If nothing else, you will receive an email about the domain name.
 
@@ -114,8 +114,6 @@ Please mention [issues](https://github.com/luolongfei/freenom/issues) to inform 
 > Every time you spend money, you're casting a vote for the kind of world you want .-- Anna Lappe
 
 ![Every time you spend your money, you are voting for the world you want. ](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
-
-Open source does not seek profit, how many follow the fate ... star is also a kind of support.
 
 ### Author
 - Main program and framework: [@luolongfei](https://github.com/luolongfei)
