@@ -35,7 +35,7 @@
 
 2、允许不够安全的应用
 
-登录谷歌邮箱后，访问[谷歌权限设置界面](https://myaccount.google.com/u/2/lesssecureapps?pli=1&pageId=none)，启用允许不够安全的应用。
+登录谷歌邮箱后，访问[谷歌权限设置界面](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none)，启用允许不够安全的应用。
 
 ![gmail配置02](https://s2.ax1x.com/2020/01/31/1392KH.png "gmail配置02")
 

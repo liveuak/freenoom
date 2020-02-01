@@ -25,15 +25,13 @@ Regardless of the success or failure of the renewal or the execution of the scri
 - Enable POP for all messages
 - Enable IMAP
 
-![gmailConfiguration01](https://s2.ax1x.com/2020/01/31/13tKsg.png "gmailConfiguration01")
+![gmail Configuration 01](https://s2.ax1x.com/2020/02/01/1GDsMR.png "gmail Configuration 01")
 
 Then save your changes.
 
 2.Allow less secure applications
 
-After logging into Google Mail, visit the [Google Permission Setting Interface](https://myaccount.google.com/u/2/lesssecureapps?pli=1&pageId=none) and enable the application that is not secure enough.
-
-![gmail configuration 02](https://s2.ax1x.com/2020/01/31/1392KH.png "gmail configuration 02")
+After logging into Google Mail, visit [this page](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none) and enable the application that is not secure enough.
 
 Also, if prompted
 > Do not allow access to account
