@@ -214,7 +214,7 @@ class FreeNom
                     'notice'
                 );
             }
-            system_log(sprintf('%s：执行成功，今次没有需要续期的域名。', $this->username));
+            system_log(sprintf('%s：<green>执行成功，今次没有需要续期的域名。</green>', $this->username));
         }
     }
 
