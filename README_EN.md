@@ -13,7 +13,6 @@ So I felt frustrated every time I renewed, so I wrote this automatic renewal scr
 ![Email example](https://s2.ax1x.com/2020/01/31/139Rrd.png "Email content")
 
 Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the program. In the case of a renewal success or failure email, the email will include the number of days that the domain name has not been renewed.
-The email refers to the email style of the unregistered public account sent by WeChat.
 
 ### Preparation
 - Mailbox: For the sake of understanding, it is also called robot mailbox, which is used to send notification emails.
