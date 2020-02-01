@@ -16,15 +16,12 @@ Regardless of the success or failure of the renewal or the execution of the scri
 The email refers to the email style of the unregistered public account sent by WeChat.
 
 ### a
-- Mailbox: For the sake of understanding, it is also called robot mailbox, which is used to send notification emails. Currently supports `Gmail`,` QQ mailbox` and `163 mailbox`. The program will automatically determine the type of sending mailbox and use the appropriate configuration. `Gmail` is recommended.
-- Mailbox: Used to receive notification emails sent by robots. It is recommended to use `QQ Mailbox`. The only advantage of` QQ Mailbox` is that the message will pop up in `QQ` when the mail is received.
+- Mailbox: For the sake of understanding, it is also called robot mailbox, which is used to send notification emails.
+- Mailbox: Used to receive notification emails sent by robots.
 - VPS: Any server can be used. The system recommends `Centos7`, and the PHP version must be` php7.1` or above.
 - No more
 
-### Configure sending email
-The following introduces the configuration of `Gmail`,` QQ mailbox`, and `163 mailbox`. You only need to look at the parts you need. Note that `QQ mailbox` and` 163 mailbox` both use the account plus authorization code to log in.
-`Google Mail` Use your account and password to log in, please know. I also want to talk about it. For domestic mailboxes, you have to spend a dime to send a text message to the mailbox provider to get the authorization code.
-#### Setting up Gmail
+### Setting up Gmail
 1.In `Settings> Forwarding and POP / IMAP`, tick
 - Enable POP for all messages
 - Enable IMAP
@@ -35,7 +32,7 @@ Then save your changes.
 
 2.Allow less secure applications
 
-After logging into Google Mail, visit the[Google Permission Setting Interface](https://myaccount.google.com/u/2/lesssecureapps?pli=1&pageId=none) and enable the application that is not secure enough.
+After logging into Google Mail, visit the [Google Permission Setting Interface](https://myaccount.google.com/u/2/lesssecureapps?pli=1&pageId=none) and enable the application that is not secure enough.
 
 ![gmail configuration 02](https://s2.ax1x.com/2020/01/31/1392KH.png "gmail configuration 02")
 
