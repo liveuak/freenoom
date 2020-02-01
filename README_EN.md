@@ -5,6 +5,8 @@
 [![Scrutinizer Code Quality](https://img.shields.io/badge/scrutinizer-9.07-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/master/LICENSE)
 
+Documentation: English version | [中文版](https://github.com/luolongfei/freenom)
+
 ### Why write this script
 As we all know, Freenom is the only merchant on the planet that provides free top-level domain names, but it needs to be renewed every year for up to one year at a time. Since I applied for a bunch of domain names, and not at the same time,
 So I felt frustrated every time I renewed, so I wrote this automatic renewal script.
@@ -36,7 +38,7 @@ After logging into Google Mail, visit [this page](https://myaccount.google.com/u
 Also, if prompted
 > Do not allow access to account
 
-After logging in to Google Mail, go to [this interface of gmail](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click Allow. This situation is relatively rare.
+After logging in to Google Mail, go to [this page](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click Allow. This situation is relatively rare.
 
 *Email settings are now complete. You can happily configure this program* :)
 
