@@ -1,0 +1,31 @@
+<?php
+/**
+ * 配置
+ *
+ * @author mybsdc <mybsdc@gmail.com>
+ * @date 2019/3/2
+ * @time 11:39
+ */
+
+return [
+    /**
+     * 邮箱配置
+     */
+    'mail' => [
+        /**
+         * 目前机器人邮箱账户支持谷歌邮箱、QQ邮箱以及163邮箱，程序会自动判断填入的邮箱类型并使用合适的配置。注意，QQ邮箱与163邮箱均使用
+         * 账户加授权码的方式登录，谷歌邮箱使用账户加密码的方式登录，请知悉。
+         */
+        'to' => env('TO'), // 接收通知的邮箱
+        'toName' => '主人', // 收件人名字
+        'username' => env('MAIL_USERNAME'), // 机器人邮箱账户
+        'password' => env('MAIL_PASSWORD'), // 机器人邮箱密码或授权码
+
+        // 'replyTo' => 'mybsdc@qq.com', // 接收回复的邮箱
+        // 'replyToName' => '作者', // 接收回复的人名
+    ],
+
+    'locale' => 'zh', // 指定语言包，位于resources/lang/目录下
+    'noticeFreq' => 1, // 通知频率 0：仅当有续期操作的时候 1：每次执行
+    'debug' => false,
+];
