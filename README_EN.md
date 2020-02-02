@@ -94,16 +94,16 @@ $ crontab -e
 ```bash
 $ systemctl restart crond
 ```
-To check if the `scheduled task` is normal, you can set the execution time of the above task to a few minutes, and then wait until the task execution is completed,
+To check if the `Task` is normal, you can set the execution time of the above task to a few minutes, and then wait until the task execution is completed,
 check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freenom/` directory for errors. Common error messages are as follows:
 - /bin/sh: php: command not found
 - /bin/sh: /usr/local/php: Is a directory
 
-> 解决方案：
+> solution:
 >
-> 先执行
+> execute
 > ```bash
-> # 确定php的位置，一般输出为“php: /usr/local/php /usr/local/php/bin/php”，选长的那个即：/usr/local/php/bin/php
+> # Determine the location of php, the general output is "php: /usr/local/php /usr/local/php/bin/php", we choose: /usr/local/php/bin/php
 > $ whereis php
 > ```
 > Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your own system), 
@@ -114,6 +114,8 @@ check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freen
 > to
 > 
 > `00 09 * * * cd /data/wwwroot/freenom/ && /usr/local/php/bin/php run > freenom_crontab.log 2>&1`
+> 
+> More information: [click here](https://stackoverflow.com/questions/7397469/why-is-crontab-not-executing-my-php-script)
 > 
 Of course, if your `crontab` can correctly find the `php path` without error, you don't need to do anything.
 

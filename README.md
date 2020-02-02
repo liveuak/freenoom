@@ -146,7 +146,9 @@ $ systemctl restart crond
 > 
 > `00 09 * * * cd /data/wwwroot/freenom/ && /usr/local/php/bin/php run > freenom_crontab.log 2>&1`
 > 
-当然，如果你的`计划任务`能正确找到`php路径`，没有出错，那你什么也不用做。
+> 更多参考：[点这里](https://stackoverflow.com/questions/7397469/why-is-crontab-not-executing-my-php-script)
+>
+当然，如果你的`计划任务`能正确找到`php路径`，没有错误，那你什么也不用做。
 
 *至此，所有的配置都已经完成，下面我们验证一下整个流程是否走通*:)
 
