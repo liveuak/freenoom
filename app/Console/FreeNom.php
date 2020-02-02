@@ -18,7 +18,7 @@ use Luolongfei\Lib\Mail;
 
 class FreeNom
 {
-    const VERSION = 'v0.2';
+    const VERSION = 'v0.2.1';
 
     const TIMEOUT = 32.52;
 

@@ -118,15 +118,35 @@ $ crontab -e
 
 # 任务内容如下
 # 此任务的含义是在每天早上9点执行/data/wwwroot/freenom/路径下的run文件
-# 注意将/data/wwwroot/freenom/替换为你自己run文件所在路径
-00 09 * * * cd /data/wwwroot/freenom/ && php run >/dev/null 2>&1
+# 注意：某些情况下，crontab可能找不到你的php路径，下面的命令执行后会在freenom_crontab.log文件输出错误信息，你应该指定php路径：把下面的php替换为/usr/local/php/bin/php（根据实际情况）
+00 09 * * * cd /data/wwwroot/freenom/ && php run > freenom_crontab.log 2>&1
 ```
 
-##### 重启crond守护进程
+##### 重启crond守护进程（每次编辑任务表单后都需此步，以使任务生效）
 ```bash
 $ systemctl restart crond
 ```
-若要检查`计划任务`是否正常，你也可以添加一个几分钟后执行的临时的`计划任务`，看任务是否执行。
+若要检查`计划任务`是否正常，你可以将上面的任务执行时间设置在几分钟后，然后等到任务执行完成，
+检查`/data/wwwroot/freenom/`目录下的`freenom_crontab.log`文件内容，是否有报错信息。常见的错误信息如下：
+- /bin/sh: php: command not found
+- /bin/sh: /usr/local/php: Is a directory
+
+> 解决方案：
+>
+> 先执行
+> ```bash
+> # 确定php的位置，一般输出为“php: /usr/local/php /usr/local/php/bin/php”，选长的那个即：/usr/local/php/bin/php
+> $ whereis php
+> ```
+> 现在我们知道php的路径是`/usr/local/php/bin/php`（根据你自己系统的实际情况，可能不同），然后修改表单任务里的命令，把
+> 
+> `00 09 * * * cd /data/wwwroot/freenom/ && php run > freenom_crontab.log 2>&1`
+> 
+> 改为
+> 
+> `00 09 * * * cd /data/wwwroot/freenom/ && /usr/local/php/bin/php run > freenom_crontab.log 2>&1`
+> 
+当然，如果你的`计划任务`能正确找到`php路径`，没有出错，那你什么也不用做。
 
 *至此，所有的配置都已经完成，下面我们验证一下整个流程是否走通*:)
 
