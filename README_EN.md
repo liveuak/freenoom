@@ -40,6 +40,7 @@ Also, if prompted
 
 After logging in to Google Mail, go to [this page](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click Allow. This situation is relatively rare.
 
+### Telegram bot
 If you don't want to use email push, you can also use Telegram bot. In the `config.php` file, 
 replace the Change the `enable` value to `true` to enable the Telegram bot. Similarly, 
 change the value of `enable` under` mail` to `false` to disable the email push method. Telegram bot corresponds to two configuration values, 
