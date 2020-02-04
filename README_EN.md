@@ -40,7 +40,14 @@ Also, if prompted
 
 After logging in to Google Mail, go to [this page](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click Allow. This situation is relatively rare.
 
-*Email settings are now complete. You can happily configure this program* :)
+If you don't want to use email push, you can also use Telegram bot. In the `config.php` file, 
+replace the Change the `enable` value to `true` to enable the Telegram bot. Similarly, 
+change `enable` under `mail` to `false` to disable the email push method. Telegram bot corresponds to two configuration values, 
+one is `chatID`, you can get your own id by sending `/start` to `@userinfobot` using your Telegram account, 
+and the other is `token`, your Telegram bot token, how to obtain a token and how to create a Telegram bot, 
+please refer to the official document: [click me to know](https://core.telegram.org/bots#6-botfather)
+
+*This completes the settings related to notifications, followed by the configuration related to this program* :)
 
 ### Configuration script
 All operations are performed under Centos7 system, other Linux distributions are similar

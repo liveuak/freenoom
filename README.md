@@ -72,7 +72,13 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 ![163邮箱配置03](https://s2.ax1x.com/2020/01/31/13WMaq.png "163邮箱配置03")
 
-*邮箱设置到此就完成了，下面可以愉快的配置本程序了*:)
+上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在`config.php`文件中，将`telegram`下的
+`enable`值改为`true`，即可启用 Telegram bot，同样的，将`mail`下的`enable`改为`false`即可关闭邮件推送方式。
+Telegram bot 对应两个配置值，一个是`chatID`，通过使用你的 Telegram 账户发送`/start`给`@userinfobot`即可以获取自己的id，另一个是
+`token`，你的 Telegram bot 令牌，你会创建 Telegram bot 就知道怎么获取，不多赘述。
+如何创建一个 Telegram bot 请参考官方文档：[点我了解](https://core.telegram.org/bots#6-botfather)
+
+*与通知相关的设置到此就完成了，下面可以愉快的配置本程序了* :)
 
 ### 配置脚本
 所有操作均在Centos7系统下进行，其它Linux发行版大同小异
