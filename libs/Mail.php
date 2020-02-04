@@ -68,14 +68,21 @@ class Mail
      * 发送邮件
      *
      * @param string $subject 标题
-     * @param string|array $content 正文
+     * @param string | array $content 正文
      * @param string $to 收件人，选传
      * @param string $template 模板，选传
      *
+     * @return bool
      * @throws \Exception
      */
     public static function send($subject, $content, $to = '', $template = '')
     {
+        if (config('mail.enable') === false) {
+            system_log(sprintf('由于没有启用邮件功能，故本次不通过邮件送信。今次邮件标题为：%s', $subject));
+
+            return false;
+        }
+
         self::mail()->addAddress($to ?: config('mail.to'), config('mail.toName', '主人')); // 添加收件人，参数2选填
         self::mail()->addReplyTo(config('mail.replyTo', 'mybsdc@qq.com'), config('mail.replyToName', '作者')); // 备用回复地址，收到的回复的邮件将被发到此地址
 

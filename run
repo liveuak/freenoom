@@ -36,6 +36,7 @@ require VENDOR_PATH . '/autoload.php';
 
 use Luolongfei\Lib\Log;
 use Luolongfei\Lib\Mail;
+use Luolongfei\Lib\TelegramBot;
 
 /**
  * @throws Exception
@@ -44,7 +45,8 @@ function customize_error_handler()
 {
     if (!is_null($error = error_get_last())) {
         Log::error('程序意外终止', $error);
-//        Mail::send('主人，程序意外终止', '具体情况我也不知道，请查看服务器日志定位问题。');
+//        Mail::send('主人，程序意外终止', '具体情况我也不清楚，请查看服务器日志定位问题。');
+//        TelegramBot::send('主人，程序意外终止，具体情况我也不清楚，请查看服务器日志定位问题。');
     }
 }
 
@@ -57,6 +59,7 @@ function exception_handler(\Exception $e)
 {
     Log::error('未捕获的异常：' . $e->getMessage());
     Mail::send('主人，未捕获的异常', "具体的异常内容是：\n" . $e->getMessage());
+    TelegramBot::send('主人，发现未捕获的异常：' . $e->getMessage());
 }
 
 try {

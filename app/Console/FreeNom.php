@@ -15,10 +15,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Luolongfei\Lib\Log;
 use Luolongfei\Lib\Mail;
+use Luolongfei\Lib\TelegramBot;
 
 class FreeNom
 {
-    const VERSION = 'v0.2.1';
+    const VERSION = 'v0.2.2';
 
     const TIMEOUT = 32.52;
 
@@ -146,9 +147,9 @@ class FreeNom
 
         // 续期
         $result = '';
-        $renewed = ''; // 续期成功的域名
-        $notRenewed = ''; // 记录续期出错的域名，用于邮件通知内容
-        $domainInfo = ''; // 域名状态信息，用于邮件通知内容
+        $renewed = $renewedTG = ''; // 续期成功的域名
+        $notRenewed = $notRenewedTG = ''; // 记录续期出错的域名，用于邮件通知内容
+        $domainInfo = $domainInfoTG = ''; // 域名状态信息，用于邮件通知内容
         foreach ($domains as $d) {
             $domain = $d['domain'];
             $days = intval($d['days']);
@@ -181,15 +182,19 @@ class FreeNom
                 if (stripos($body, 'Order Confirmation') === false) { // 续期失败
                     $result .= sprintf("%s续期失败\n", $domain);
                     $notRenewed .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>', $domain, $domain);
+                    $notRenewedTG .= sprintf('[%s](http://%s)  ', $domain, $domain);
                 } else {
                     $result .= sprintf("%s续期成功\n", $domain);
                     $renewed .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>', $domain, $domain);
+                    $renewedTG .= sprintf('[%s](http://%s)  ', $domain, $domain);
                     continue;
                 }
             }
 
             $domainInfo .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>还有<span style="font-weight: bold; font-size: 16px;">%d</span>天到期，', $domain, $domain, $days);
+            $domainInfoTG .= sprintf('[%s](http://%s)还有*%d*天到期，', $domain, $domain, $days);
         }
+        $domainInfoTG .= '更多信息可以参考[Freenom官网](https://my.freenom.com/domains.php?a=renewals)哦~';
 
         if ($notRenewed || $renewed) {
             Mail::send(
@@ -201,6 +206,12 @@ class FreeNom
                     $domainInfo ?: '哦豁，没看到其它域名。'
                 ]
             );
+            TelegramBot::send(sprintf(
+                "主人，我刚刚帮你续期域名啦~\n\n%s%s\n另外，%s",
+                $renewedTG ? sprintf("续期成功：%s\n", $renewedTG) : '',
+                $notRenewedTG ? sprintf("续期失败：%s\n", $notRenewedTG) : '',
+                $domainInfoTG
+            ));
             system_log(sprintf("%s：续期结果如下：\n%s", $this->username, $result));
         } else {
             if (config('noticeFreq') === 1) {
@@ -213,6 +224,7 @@ class FreeNom
                     '',
                     'notice'
                 );
+                TelegramBot::send("报告，今天没有域名需要续期，所有域名情况如下：\n\n" . $domainInfoTG);
             }
             system_log(sprintf('%s：<green>执行成功，今次没有需要续期的域名。</green>', $this->username));
         }
@@ -314,6 +326,13 @@ class FreeNom
                     '',
                     'LlfException'
                 );
+                TelegramBot::send(sprintf(
+                    '主人，出错了。具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。（账户：%s）',
+                    $e->getFile(),
+                    $e->getLine(),
+                    $e->getMessage(),
+                    $this->username
+                ));
             } catch (\Exception $e) {
                 system_log(sprintf('出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
             }

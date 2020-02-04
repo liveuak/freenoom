@@ -20,9 +20,19 @@ return [
         'toName' => '主人', // 收件人名字
         'username' => env('MAIL_USERNAME'), // 机器人邮箱账户
         'password' => env('MAIL_PASSWORD'), // 机器人邮箱密码或授权码
+        'enable' => true, // 是否启用，默认启用
 
         // 'replyTo' => 'mybsdc@qq.com', // 接收回复的邮箱
         // 'replyToName' => '作者', // 接收回复的人名
+    ],
+
+    /**
+     * Telegram Bot
+     */
+    'telegram' => [
+        'chatID' => env('TELEGRAM_CHAT_ID'), // 你的chat_id，通过发送“/start”给@userinfobot可以获取自己的id
+        'token' => env('TELEGRAM_BOT_TOKEN'), // Telegram Bot 的 token
+        'enable' => false // 是否启用，默认不启用
     ],
 
     'locale' => 'zh', // 指定语言包，位于resources/lang/目录下
