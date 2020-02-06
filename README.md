@@ -7,7 +7,7 @@
 
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/master/README_EN.md) | 中文版
 
-### 缘起
+### 前言
 众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
 所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。
 
@@ -24,8 +24,11 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 - 没有了
 
 ### 配置发信邮箱
-下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的配置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用账户加授权码的方式登录，
+下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的设置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用账户加授权码的方式登录，
 `谷歌邮箱`使用账户加密码的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。
+
+***
+
 #### 设置Gmail
 1、在`设置>转发和POP/IMAP`中，勾选
 - 对所有邮件启用 POP 
@@ -46,6 +49,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 登录谷歌邮箱后，去[gmail的这个界面](https://accounts.google.com/b/0/DisplayUnlockCaptcha)点击允许。这种情况较为少见。
 
+***
+
 #### 设置QQ邮箱
 在`设置>账户>POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务`下，开启`POP3/SMTP服务`
 
@@ -61,6 +66,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 ![qq邮箱配置04](https://s2.ax1x.com/2020/01/31/13coDI.png "qq邮箱配置04")
 
+***
+
 #### 设置163邮箱
 在`设置>POP3/SMTP/IMAP`下，开启`POP3/SMTP服务`和`IMAP/SMTP服务`并保存
 
@@ -71,13 +78,15 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 现在点击侧边栏的`客户端授权密码`，并获取授权码，你看到画面可能和我不一样，因为我已经获取了授权码，所以只有`重置授权码`按钮，这里自己根据网站提示申请获取授权码，网易和腾讯一样恶心，需要你用手机给它发一条短信才能拿到授权码
 
 ![163邮箱配置03](https://s2.ax1x.com/2020/01/31/13WMaq.png "163邮箱配置03")
-
+***
 ### Telegram bot
 上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在`config.php`文件中，将`telegram`下的
 `enable`的值改为`true`，即可启用 Telegram bot，同样的，将`mail`下的`enable`的值改为`false`即可关闭邮件推送方式。
 Telegram bot 对应两个配置值，一个是`chatID`，通过使用你的 Telegram 账户发送`/start`给`@userinfobot`即可以获取自己的id，另一个是
 `token`，你的 Telegram bot 令牌，你会创建 Telegram bot 就知道怎么获取，不多赘述。
 如何创建一个 Telegram bot 请参考官方文档：[点我了解](https://core.telegram.org/bots#6-botfather)
+
+***
 
 *与通知相关的设置到此就完成了，下面可以愉快的配置本程序了* :)
 
