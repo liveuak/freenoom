@@ -51,11 +51,11 @@ function customize_error_handler()
 }
 
 /**
- * @param $e
+ * @param \Exception $e
  *
  * @throws \Exception
  */
-function exception_handler(\Exception $e)
+function exception_handler($e)
 {
     Log::error('未捕获的异常：' . $e->getMessage());
     Mail::send('主人，未捕获的异常', "具体的异常内容是：\n" . $e->getMessage());
@@ -63,22 +63,6 @@ function exception_handler(\Exception $e)
 }
 
 try {
-    if (get_argv('help') || get_argv('h')) {
-        $desc = <<<FLL
-Description
-Params:
--c: <string> 指定要实例化的类名。默认调用FreeNom类
--m: <string> 指定要调用的方法名（不支持静态方法）。默认调用handle方法
--h: 显示说明
-
-Example: 
-$ php run -c=FreeNom -m=handle
-
-FLL;
-        echo $desc;
-        exit(0);
-    }
-
     $class = sprintf('Luolongfei\App\Console\%s', get_argv('c', 'FreeNom'));
     $fn = get_argv('m', 'handle');
 
