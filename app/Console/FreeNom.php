@@ -19,9 +19,9 @@ use Luolongfei\Lib\TelegramBot;
 
 class FreeNom
 {
-    const VERSION = 'v0.2.2';
+    const VERSION = 'v0.2.3';
 
-    const TIMEOUT = 32.52;
+    const TIMEOUT = 34.52;
 
     // FreeNom登录地址
     const LOGIN_URL = 'https://my.freenom.com/dologin.php';
@@ -37,6 +37,9 @@ class FreeNom
 
     // 匹配域名信息的正则
     const DOMAIN_INFO_REGEX = '/<tr><td>(?P<domain>[^<]+)<\/td><td>[^<]+<\/td><td>[^<]+<span class="[^"]+">(?P<days>\d+)[^&]+&domain=(?P<id>\d+)"/i';
+
+    // 匹配登录状态的正则
+    const LOGIN_STATUS_REGEX = '/<li.*?Logout.*?<\/li>/i';
 
     /**
      * @var FreeNom
@@ -122,7 +125,7 @@ class FreeNom
         $this->login();
         $authCookie = $this->jar->getCookieByName('WHMCSZH5eHTGhfvzP')->getValue();
         if (empty($authCookie)) {
-            throw new LlfException(32520002);
+            throw new LlfException(34520002);
         }
 
         // 检查域名状态
@@ -134,14 +137,18 @@ class FreeNom
         ]);
         $body = (string)$response->getBody();
 
+        if (!preg_match(self::LOGIN_STATUS_REGEX, $body)) {
+            throw new LlfException(34520009);
+        }
+
         // 域名数据
         if (!preg_match_all(self::DOMAIN_INFO_REGEX, $body, $domains, PREG_SET_ORDER)) {
-            throw new LlfException(32520003);
+            throw new LlfException(34520003);
         }
 
         // 页面token
         if (!preg_match(self::TOKEN_REGEX, $body, $matches)) {
-            throw new LlfException(32520004);
+            throw new LlfException(34520004);
         }
         $token = $matches['token'];
 
@@ -295,7 +302,7 @@ class FreeNom
         }
 
         if (empty($accounts)) {
-            throw new LlfException(32520001);
+            throw new LlfException(34520001);
         }
 
         // 去重
@@ -333,6 +340,7 @@ class FreeNom
                     $e->getMessage(),
                     $this->username
                 ));
+                system_log(sprintf('出错：<red>%s</red>', $e->getMessage()));
             } catch (\Exception $e) {
                 system_log(sprintf('出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
             }

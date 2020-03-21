@@ -13,7 +13,7 @@ use GuzzleHttp\Client;
 
 class TelegramBot
 {
-    const TIMEOUT = 32.52;
+    const TIMEOUT = 34.52;
 
     /**
      * @var TelegramBot
@@ -95,7 +95,7 @@ class TelegramBot
     public static function send(string $content, $chatID = '')
     {
         if (config('telegram.enable') === false) {
-            system_log(sprintf('由于没有启用 Telegram Bot 功能，故本次不通过 Telegram Bot 送信。今次消息内容为：%s', $content));
+            system_log('由于没有启用 Telegram Bot 功能，故本次不通过 Telegram Bot 送信。');
 
             return false;
         }

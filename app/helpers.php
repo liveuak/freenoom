@@ -7,6 +7,7 @@
  * @time 16:34
  */
 
+use Luolongfei\App\Exceptions\LlfException;
 use Luolongfei\Lib\Argv;
 use Luolongfei\Lib\Config;
 use Luolongfei\Lib\Log;
@@ -189,7 +190,7 @@ if (!function_exists('env')) {
      * @param string $key
      * @param string $default 默认值
      *
-     * @return array|bool|false|null|string
+     * @return array | bool | false | null | string
      */
     function env($key = '', $default = null)
     {
@@ -209,5 +210,28 @@ if (!function_exists('get_argv')) {
     function get_argv(string $name, string $default = '')
     {
         return Argv::instance()->get($name, $default);
+    }
+}
+
+if (!function_exists('system_check')) {
+    /**
+     * 检查环境是否满足要求
+     *
+     * @throws LlfException
+     */
+    function system_check()
+    {
+        if (!function_exists('putenv')) {
+            throw new LlfException(34520005);
+        }
+
+        if (version_compare(PHP_VERSION, '7.0.0') < 0) {
+            throw new LlfException(34520006);
+        }
+
+        $envFile = ROOT_PATH . '/.env';
+        if (!file_exists($envFile)) {
+            throw new LlfException(copy(ROOT_PATH . '/.env.example', $envFile) ? 34520007 : 34520008);
+        }
     }
 }
