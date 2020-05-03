@@ -233,5 +233,9 @@ if (!function_exists('system_check')) {
         if (!file_exists($envFile)) {
             throw new LlfException(copy(ROOT_PATH . '/.env.example', $envFile) ? 34520007 : 34520008);
         }
+
+        if (!extension_loaded('curl')) {
+            throw new LlfException(34520010);
+        }
     }
 }
