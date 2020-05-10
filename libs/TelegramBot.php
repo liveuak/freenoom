@@ -88,7 +88,7 @@ class TelegramBot
      * ```
      * 需要注意的是，普通markdown语法中加粗字体使用的是“**正文**”的形式，但是 Telegram Bot 中是“*加粗我呀*”的形式，更多相关信息请
      * 参考官网：https://core.telegram.org/bots/api#sendmessage
-     * 另外我干掉了“~”、“.”和“>”关键字，分别对应删除线、有序列表和引用符号，这几个我可能用不上:)
+     * 另外我干掉了“_”、“~”、“-”、“.”和“>”关键字，分别对应斜体、删除线、无序列表、有序列表和引用符号，这几个我可能用不上:)
      *
      * @return bool
      */
@@ -101,7 +101,7 @@ class TelegramBot
         }
 
         // 这几个我可能用不上的markdown关键字我就直接干掉了
-        $content = preg_replace('/([.>~])/i', '\\\\$1', $content);
+        $content = preg_replace('/([.>~_-])/i', '\\\\$1', $content);
 
         $telegramBot = self::instance();
 
