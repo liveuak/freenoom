@@ -181,7 +181,7 @@ $ cd /data/wwwroot/freenom/ && php run
 > 认真是我们参与这个社会的方式，认真是我们改变这个社会的方式。  ——李志
 
 ### 捐赠 Donate
-
+如果你觉得本项目真的有帮助到你并且想回馈作者，感谢你的捐赠。
 #### PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 > Every time you spend money, you're casting a vote for the kind of world you want. -- Anna Lappe
 
@@ -189,7 +189,10 @@ $ cd /data/wwwroot/freenom/ && php run
 
 ![每一次你花的钱都是在为你想要的世界投票。](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
 
-**你的star或者小额打赏是我长期维护此项目的动力所在，由衷感谢每一位支持者，“每一次你花的钱都是在为你想要的世界投票”。:)**
+**你的star或者小额打赏是我长期维护此项目的动力所在，由衷感谢每一位支持者，“每一次你花的钱都是在为你想要的世界投票”。**
+
+### 捐赠名单 Donate List
+非常感谢「 [这些用户](https://github.com/luolongfei/freenom/wiki/Donate-List) 」对本项目的捐赠支持！
 
 ### 作者
 - 主程序以及框架：[@luolongfei](https://github.com/luolongfei)
