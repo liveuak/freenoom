@@ -16,4 +16,4 @@ jobs:
               uses: franzliedke/gh-action-php@master
             - name: Run
               run: |
-                php7.1 php -v
+                php7.1 run
