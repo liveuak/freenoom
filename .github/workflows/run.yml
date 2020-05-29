@@ -1,10 +1,20 @@
+#标题：
+#  用github actions定期测试（运行）脚本
+#自动构建默认触发时间：
+#  仓库push、每天10点
+#需要的设置：
+#  首先fork仓库，然后在Settings-Secrets中添加变量（FREENOM_USERNAME、FREENOM_PASSWORD、MAIL_USERNAME、MAIL_PASSWORD、TO、noticeFreq）
+#  如果这些变量还不够，可以自己动手添加变量，还要修改下面Setting的step中的命令行，使用actions的变量替换配置文件中的相应位置
+#注意：
+#  下面的cron时间是世界时间
 name: Run it on action
 
 on:
   push:
     branches:
       - master
-
+  schedule:
+    - cron: 20 02 * * *
 jobs:
     run-it:
         runs-on: ubuntu-latest
@@ -22,6 +32,7 @@ jobs:
                 sed -i "s/MAIL_USERNAME=llf.push@gmail.com/MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}/" .env
                 sed -i "s/MAIL_PASSWORD=xxx/MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}/" .env
                 sed -i "s/TO=mybsdc@qq.com/TO=${{ secrets.TO }}/" .env
+                sed -i "s/'noticeFreq' => 1,/'noticeFreq' => ${{ secrets.noticeFreq }},/" config.php
             - name: Run
               run: |
                 php7.1 run
