@@ -221,7 +221,7 @@ class FreeNom
             ));
             system_log(sprintf("%s：续期结果如下：\n%s", $this->username, $result));
         } else {
-            if (config('noticeFreq') === 1) {
+            if (config('noticeFreq') == 1) {
                 Mail::send(
                     '报告，今天没有域名需要续期',
                     [
@@ -232,8 +232,10 @@ class FreeNom
                     'notice'
                 );
                 TelegramBot::send("报告，今天没有域名需要续期，所有域名情况如下：\n\n" . $domainInfoTG);
+            } else {
+                system_log('当前通知频率为「仅当有续期操作时」，故本次不会推送通知');
             }
-            system_log(sprintf('%s：<green>执行成功，今次没有需要续期的域名。</green>', $this->username));
+            system_log(sprintf('%s：<green>执行成功，今次没有需要续期的域名</green>', $this->username));
         }
     }
 
