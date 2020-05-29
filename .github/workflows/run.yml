@@ -1,12 +1,14 @@
 #标题：
 #  用github actions定期测试（运行）脚本
 #自动构建默认触发时间：
-#  仓库push、每天10点
+#  仓库push、每天10点（北京时间）
 #需要的设置：
 #  首先fork仓库，然后在Settings-Secrets中添加变量（FREENOM_USERNAME、FREENOM_PASSWORD、MAIL_USERNAME、MAIL_PASSWORD、TO、noticeFreq）
 #  如果这些变量还不够，可以自己动手添加变量，还要修改下面Setting的step中的命令行，使用actions的变量替换配置文件中的相应位置
 #注意：
 #  下面的cron时间是世界时间
+#  执行过程大概需要1分半
+#  定时执行可能会晚个几分钟才开始
 name: Run it on action
 
 on:
@@ -14,7 +16,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: 20 02 * * *
+    - cron: 00 02 * * *
 jobs:
     run-it:
         runs-on: ubuntu-latest
