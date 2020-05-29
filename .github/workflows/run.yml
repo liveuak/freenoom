@@ -14,7 +14,14 @@ jobs:
               uses: actions/checkout@master
             - name: Php env
               uses: franzliedke/gh-action-php@master
-            - name: Run
+            - name: Setting
               run: |
                 cp .env.example .env
+                sed -i "s/FREENOM_USERNAME=593198779@qq.com/FREENOM_USERNAME=${{ secrets.FREENOM_USERNAME }}/" .env
+                sed -i "s/FREENOM_PASSWORD=''/FREENOM_PASSWORD='${{ secrets.FREENOM_PASSWORD }}'/" .env
+                sed -i "s/MAIL_USERNAME=llf.push@gmail.com/MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}/" .env
+                sed -i "s/MAIL_PASSWORD=xxx/MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}/" .env
+                sed -i "s/TO=mybsdc@qq.com/TO=${{ secrets.TO }}/" .env
+            - name: Run
+              run: |
                 php7.1 run
