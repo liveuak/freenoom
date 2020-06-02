@@ -46,6 +46,7 @@ class TelegramBot
             ],
             'cookies' => false,
             'timeout' => self::TIMEOUT,
+            'verify' => config('verifySSL'),
 //            'http_errors' => false,
             'debug' => config('debug')
         ]);

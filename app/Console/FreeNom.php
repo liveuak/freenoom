@@ -19,7 +19,7 @@ use Luolongfei\Lib\TelegramBot;
 
 class FreeNom
 {
-    const VERSION = 'v0.2.3';
+    const VERSION = 'v0.2.5';
 
     const TIMEOUT = 34.52;
 
@@ -77,6 +77,7 @@ class FreeNom
             'timeout' => self::TIMEOUT,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_AUTOREFERER => true,
+            'verify' => config('verifySSL'),
             'debug' => config('debug')
         ]);
     }
