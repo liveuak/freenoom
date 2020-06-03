@@ -182,8 +182,8 @@ $ cd /data/wwwroot/freenom/ && php run
 请提 [issues](https://github.com/luolongfei/freenom/issues) 告知，我会及时修复，本项目长期维护。欢迎star~
 
 ### 🍺 信仰
-2020年，这个世界会好吗？
-> ![南京市民李先生](https://s2.ax1x.com/2020/02/04/1Bm3Ps.jpg "南京市民李先生")
+
+![南京市民李先生](https://s2.ax1x.com/2020/02/04/1Bm3Ps.jpg "南京市民李先生")
 > 
 > 认真是我们参与这个社会的方式，认真是我们改变这个社会的方式。  ——李志
 
