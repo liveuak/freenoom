@@ -1,5 +1,5 @@
 <div align="center">
-<h1>freenom：freenom域名自动续期</h1>
+<h1>Freenom：freenom域名自动续期</h1>
 
 [![Build Status](https://img.shields.io/badge/build-passed-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
 [![Php Version](https://img.shields.io/badge/php-%3E=7.1-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
