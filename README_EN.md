@@ -10,16 +10,27 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 </div>
 
 [📃 Why write this script](#-Why-write-this-script)
+
 [🍭 Demo](#-Demo)
+
 [🎁 Preparation](#-Preparation)
+
 [📪 Setting up Gmail](#-Setting-up-Gmail)
+
 [🤶 Telegram bot](#-Telegram-bot)
+
 [🚧 Configuration script](#-Configuration-script)
+
 [🎈 Add scheduled task](#-Add-scheduled-task)
+
 [☕ Verification](#-Verification)
+
 [❤ Donate](#-Donate)
+
 [🌚 Author](#-Author)
+
 [🎉 Acknowledgements](#-Acknowledgements)
+
 [🥝 Open source agreement](#-Open-source-agreement)
 
 
