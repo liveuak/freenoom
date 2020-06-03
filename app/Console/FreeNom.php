@@ -19,7 +19,7 @@ use Luolongfei\Lib\TelegramBot;
 
 class FreeNom
 {
-    const VERSION = 'v0.2.3';
+    const VERSION = 'v0.2.5';
 
     const TIMEOUT = 34.52;
 
@@ -77,6 +77,7 @@ class FreeNom
             'timeout' => self::TIMEOUT,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_AUTOREFERER => true,
+            'verify' => config('verifySSL'),
             'debug' => config('debug')
         ]);
     }
@@ -314,6 +315,34 @@ class FreeNom
     }
 
     /**
+     * 发送异常报告
+     *
+     * @param \Exception $e
+     *
+     * @throws \Exception
+     */
+    private function sendExceptionReport($e)
+    {
+        Mail::send(
+            '主人，' . $e->getMessage(),
+            [
+                $this->username,
+                sprintf('具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。', $e->getFile(), $e->getLine(), $e->getMessage()),
+            ],
+            '',
+            'LlfException'
+        );
+
+        TelegramBot::send(sprintf(
+            '主人，出错了。具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。（账户：%s）',
+            $e->getFile(),
+            $e->getLine(),
+            $e->getMessage(),
+            $this->username
+        ), '', false);
+    }
+
+    /**
      * @throws LlfException
      * @throws \Exception
      */
@@ -324,27 +353,14 @@ class FreeNom
             try {
                 $this->username = $account['username'];
                 $this->password = $account['password'];
+
                 $this->renewDomains();
             } catch (LlfException $e) {
-                Mail::send(
-                    '主人，' . $e->getMessage(),
-                    [
-                        $this->username,
-                        sprintf('具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。', $e->getFile(), $e->getLine(), $e->getMessage()),
-                    ],
-                    '',
-                    'LlfException'
-                );
-                TelegramBot::send(sprintf(
-                    '主人，出错了。具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。（账户：%s）',
-                    $e->getFile(),
-                    $e->getLine(),
-                    $e->getMessage(),
-                    $this->username
-                ));
                 system_log(sprintf('出错：<red>%s</red>', $e->getMessage()));
+                $this->sendExceptionReport($e);
             } catch (\Exception $e) {
                 system_log(sprintf('出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
+                $this->sendExceptionReport($e);
             }
         }
     }
