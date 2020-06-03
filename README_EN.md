@@ -132,7 +132,7 @@ Of course, if your `crontab` can correctly find the `php path` without error, yo
 *So far, all the configurations have been completed, let's verify if the whole process works* :)
 
 #### Verification
-You can first change the value of `noticeFreq` in` config.php` to 1 (that is, send an email notification each time), and then execute
+You can first change the value of `NOTICE_FREQ` in `.env` to 1 (Push notification every time the script is executed), and then execute
 ```bash
 $ cd /data/wwwroot/freenom/ && php run
 ```

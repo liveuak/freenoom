@@ -165,7 +165,7 @@ $ systemctl restart crond
 *至此，所有的配置都已经完成，下面我们验证一下整个流程是否走通*:)
 
 #### 验证
-你可以先将`config.php`中的`noticeFreq`的值改为1（即每次执行都发邮件通知），然后执行
+你可以先将 `.env` 中的 `NOTICE_FREQ` 的值改为1（即每次执行都推送通知），然后执行
 ```bash
 $ cd /data/wwwroot/freenom/ && php run
 ```
