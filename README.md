@@ -20,7 +20,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 ### 事前准备
 - 发信邮箱：为了方便理解又称机器人邮箱，用于发送通知邮件。目前支持`Gmail`、`QQ邮箱`以及`163邮箱`，程序会自动判断发信邮箱类型并使用合适的配置。推荐使用`Gmail`。
 - 收信邮箱：用于接收机器人发出的通知邮件。推荐使用`QQ邮箱`，`QQ邮箱`唯一的好处只是收到邮件会在`QQ`弹出消息。
-- VPS：随便一台服务器都行，系统推荐`Centos7`，另外PHP版本需在`php7.1`及以上。
+- VPS：随便一台服务器都行，系统推荐`Centos7`，另外PHP版本需在`php7.1`及以上。*（注：没有 VPS 也行，本项目支持在 Github Actions 上执行，完全白嫖，具体使用方法请参考「 [🤣本项目最简单的使用方法](#🤣本项目最简单的使用方法) 」）*
 - 没有了
 
 ### 配置发信邮箱
@@ -171,8 +171,15 @@ $ cd /data/wwwroot/freenom/ && php run
 ```
 不出意外的话，你将收到一封关于域名情况的邮件。
 
-遇到任何问题或bug欢迎提[issues](https://github.com/luolongfei/freenom/issues)，如果freenom改变算法导致此项目失效，
-请提[issues](https://github.com/luolongfei/freenom/issues)告知，我会及时修复，本项目长期维护。欢迎star~
+<hr>
+
+# 🤣本项目最简单的使用方法
+上面说了一堆都是基于你有自己 VPS 的情况下，如果没有 VPS 又想自动续期 Freenom 的域名
+
+<hr>
+
+遇到任何问题或bug欢迎提 [issues](https://github.com/luolongfei/freenom/issues) ，如果freenom改变算法导致此项目失效，
+请提 [issues](https://github.com/luolongfei/freenom/issues) 告知，我会及时修复，本项目长期维护。欢迎star~
 
 ### 信仰
 2020年，这个世界会好吗？
