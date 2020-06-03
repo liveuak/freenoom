@@ -212,7 +212,7 @@ $ cd /data/wwwroot/freenom/ && php run
 
 1、Fork 本仓库
 
-2、在你 Fork 的本仓库下的 `Settings` > `Secrets` 页面追加以下几个 `secret` 变量
+2、在你 Fork 的本仓库下的 `Settings` -> `Secrets` 页面追加以下几个 `secret` 变量
 
 FREENOM_USERNAME、FREENOM_PASSWORD、MULTIPLE_ACCOUNTS、MAIL_USERNAME、MAIL_PASSWORD、TO、MAIL_ENABLE、TELEGRAM_CHAT_ID、
 TELEGRAM_BOT_TOKEN、TELEGRAM_BOT_ENABLE、NOTICE_FREQ
@@ -223,12 +223,13 @@ TELEGRAM_BOT_TOKEN、TELEGRAM_BOT_ENABLE、NOTICE_FREQ
 而 `Github Actions` 每次创建的虚拟环境都会分配一个新的设备 `IP`，相当于每次都是从新设备登录 `Gmail`，
 而我们不可能每次都去手动为 `Gmail` 解除登录限制，所以这种机制会导致无法发出通知邮件）
 
-3、在心里默念作者好帅，并把本项目推荐给更多的人，把省下的买 `VPS` 的钱打赏一点儿给作者 😝
+3、在心里默念作者好帅，给个 `star` 并把本项目推荐给更多的人，把省下的买 `VPS` 的巨款打赏一点点儿给作者 😝
 
 <hr>
 
-遇到任何问题或bug欢迎提 [issues](https://github.com/luolongfei/freenom/issues) ，如果freenom改变算法导致此项目失效，
-请提 [issues](https://github.com/luolongfei/freenom/issues) 告知，我会及时修复，本项目长期维护。欢迎star~
+遇到任何问题或 Bug 欢迎提 [issues](https://github.com/luolongfei/freenom/issues) （请按模板格式提 `issues`，以便作者更快复现你的问题），
+如果 `Freenom` 改变算法导致此项目失效，请提 [issues](https://github.com/luolongfei/freenom/issues) 告知，我会及时修复，本项目长期维护。
+欢迎 `star` ~
 
 ### 🍺 信仰
 
