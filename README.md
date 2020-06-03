@@ -205,7 +205,21 @@ $ cd /data/wwwroot/freenom/ && php run
 <hr>
 
 ### 🤣 本项目最简单的使用方法
-上面说了一堆都是基于你有自己 VPS 的情况下，如果没有 VPS 又想自动续期 Freenom 的域名
+上面说了一堆都是基于你有自己的 `VPS` 的情况下，如果没有 `VPS` 又想自动续期 `Freenom` 的域名，或者单纯不想配置那么多东西，
+可以直接在 `Github Actions` 上跑本项目，`Github Actions` 会为项目创建一个虚拟环境，并在执行后自动销毁。
+
+#### 只需简单 3 步
+
+1、Fork 本仓库
+
+2、在你 Fork 的本仓库下的 Settings > Secrets 页面追加以下几个 secret 变量
+
+FREENOM_USERNAME、FREENOM_PASSWORD、MULTIPLE_ACCOUNTS、MAIL_USERNAME、MAIL_PASSWORD、TO、MAIL_ENABLE、TELEGRAM_CHAT_ID、
+TELEGRAM_BOT_TOKEN、TELEGRAM_BOT_ENABLE、NOTICE_FREQ
+
+（注：此处列出了所有可用的变量名，每个变量具体的含义以及格式请参考本项目的 `.env.example` 文件内的注释）
+
+3、在心里默念作者好帅，并把本项目推荐给更多的人，把省下的买 `VPS` 的钱打赏一点儿给作者 😝
 
 <hr>
 
