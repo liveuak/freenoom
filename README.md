@@ -62,8 +62,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 <details>
     <summary>设置Gmail</summary>
-
-  
+<br>
+<br>  
 1、在`设置>转发和POP/IMAP`中，勾选
 - 对所有邮件启用 POP 
 - 启用 IMAP
@@ -89,8 +89,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 <details>
     <summary>设置QQ邮箱</summary>
-
-
+<br>
+<br>
 在`设置>账户>POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务`下，开启`POP3/SMTP服务`
 
 ![qq邮箱配置01](https://s2.ax1x.com/2020/01/31/13cIKA.png "qq邮箱配置01")
@@ -111,8 +111,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 <details>
     <summary>设置163邮箱</summary>
-
-  
+<br>
+<br>
 在`设置>POP3/SMTP/IMAP`下，开启`POP3/SMTP服务`和`IMAP/SMTP服务`并保存
 
 ![163邮箱配置01](https://s2.ax1x.com/2020/01/31/13WKZn.png "163邮箱配置01")
