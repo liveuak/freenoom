@@ -59,7 +59,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 `谷歌邮箱`使用账户加密码的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。
 
 <details>
-<summary><h4>设置Gmail</h4></summary>
+<summary>设置Gmail</summary>
   
 ***
 1、在`设置>转发和POP/IMAP`中，勾选
