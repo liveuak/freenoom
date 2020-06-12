@@ -62,6 +62,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 <details>
     <summary>设置Gmail</summary>
+
   
 1、在`设置>转发和POP/IMAP`中，勾选
 - 对所有邮件启用 POP 
@@ -89,6 +90,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 <details>
     <summary>设置QQ邮箱</summary>
 
+
 在`设置>账户>POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务`下，开启`POP3/SMTP服务`
 
 ![qq邮箱配置01](https://s2.ax1x.com/2020/01/31/13cIKA.png "qq邮箱配置01")
@@ -109,6 +111,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 <details>
     <summary>设置163邮箱</summary>
+
   
 在`设置>POP3/SMTP/IMAP`下，开启`POP3/SMTP服务`和`IMAP/SMTP服务`并保存
 
@@ -125,13 +128,16 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 </details>
 
 #### Telegram bot
-***
+
+
 上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在`.env`文件中，
 将`TELEGRAM_BOT_ENABLE`的值改为`true`，即可启用 Telegram bot，同样的，将`MAIL_ENABLE`的值改为`false`即可关闭邮件推送方式。
 Telegram bot 有两个配置项，一个是`chatID`（对应`.env`文件中的`TELEGRAM_CHAT_ID`），
 通过使用你的 Telegram 账户发送`/start`给`@userinfobot`即可以获取自己的id，
 另一个是`token`（对应`.env`文件中的`TELEGRAM_BOT_TOKEN`），你的 Telegram bot 令牌，你会创建 Telegram bot 就知道怎么获取，
 不多赘述。如何创建一个 Telegram bot 请参考：[官方文档](https://core.telegram.org/bots#6-botfather)
+
+***
 
 *与通知相关的设置到此就完成了，下面可以愉快的配置本程序了* :)
 
