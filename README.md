@@ -9,7 +9,7 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/master/README_EN.md) | 中文版
 </div>
 
-[📃 ​ ​ 前言](#-前言)
+[📃 ​ ​ ​ 前言](#-前言)
 
 [🍭 ​ 效果](#-效果)
 
@@ -17,7 +17,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 [📪 ​ 配置发信邮箱](#-配置发信邮箱)
 
-[🚧 ​ ​ 配置脚本](#-配置脚本)
+[🚧 ​ ​ ​ 配置脚本](#-配置脚本)
 
 [🎈 ​ 添加计划任务](#-添加计划任务)
 
