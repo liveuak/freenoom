@@ -9,29 +9,29 @@
 Documentation: English version | [中文版](https://github.com/luolongfei/freenom)
 </div>
 
-[📃 ​ ​ ​ Why write this script](#-Why-write-this-script)
+[📃 ​ ​ ​ Why write this script](#----Why-write-this-script)
 
-[🍭 ​ ​ ​ Demo](#-Demo)
+[🍭 ​ ​ ​ Demo](#----Demo)
 
-[🎁 ​ ​ ​ Preparation](#-Preparation)
+[🎁 ​ ​ ​ Preparation](#----Preparation)
 
-[📪 ​ ​ ​ Setting up Gmail](#-Setting-up-Gmail)
+[📪 ​ ​ ​ Setting up Gmail](#----Setting-up-Gmail)
 
-[🤶 ​ ​ ​ Telegram bot](#-Telegram-bot)
+[🤶 ​ ​ ​ Telegram bot](#----Telegram-bot)
 
-[🚧 ​ ​ ​ Configuration script](#-Configuration-script)
+[🚧 ​ ​ ​ Configuration script](#----Configuration-script)
 
-[🎈 ​ ​ ​ Add scheduled task](#-Add-scheduled-task)
+[🎈 ​ ​ ​ Add scheduled task](#----Add-scheduled-task)
 
-[☕ ​ ​ ​ Verification](#-Verification)
+[☕ ​ ​ ​ Verification](#----Verification)
 
-[❤ ​ ​ ​ Donate](#-Donate)
+[❤ ​ ​ ​ Donate](#----Donate)
 
-[🌚 ​ ​ ​ Author](#-Author)
+[🌚 ​ ​ ​ Author](#----Author)
 
-[🎉 ​ ​ ​ Acknowledgements](#-Acknowledgements)
+[🎉 ​ ​ ​ Acknowledgements](#----Acknowledgements)
 
-[🥝 ​ ​ ​ Open source agreement](#-Open-source-agreement)
+[🥝 ​ ​ ​ Open source agreement](#----Open-source-agreement)
 
 
 ### 📃 ​ ​ ​ Why write this script
