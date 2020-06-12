@@ -58,6 +58,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的设置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用账户加授权码的方式登录，
 `谷歌邮箱`使用账户加密码的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。
 
+*（点击即可展开）*
+
 <details>
   <summary>设置Gmail</summary>
   
@@ -83,7 +85,9 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 </details>
 
-#### 设置QQ邮箱
+<details>
+  <summary>设置QQ邮箱</summary>
+
 ***
 在`设置>账户>POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务`下，开启`POP3/SMTP服务`
 
@@ -99,7 +103,11 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 ![qq邮箱配置04](https://s2.ax1x.com/2020/01/31/13coDI.png "qq邮箱配置04")
 
-#### 设置163邮箱
+</details>
+
+<details>
+  <summary>设置163邮箱</summary>
+  
 ***
 在`设置>POP3/SMTP/IMAP`下，开启`POP3/SMTP服务`和`IMAP/SMTP服务`并保存
 
@@ -110,6 +118,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 现在点击侧边栏的`客户端授权密码`，并获取授权码，你看到画面可能和我不一样，因为我已经获取了授权码，所以只有`重置授权码`按钮，这里自己根据网站提示申请获取授权码，网易和腾讯一样恶心，需要你用手机给它发一条短信才能拿到授权码
 
 ![163邮箱配置03](https://s2.ax1x.com/2020/01/31/13WMaq.png "163邮箱配置03")
+
+</details>
 
 #### Telegram bot
 ***
