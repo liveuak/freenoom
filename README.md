@@ -109,11 +109,12 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 #### Telegram bot
 ***
-上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在`config.php`文件中，将`telegram`下的
-`enable`的值改为`true`，即可启用 Telegram bot，同样的，将`mail`下的`enable`的值改为`false`即可关闭邮件推送方式。
-Telegram bot 对应两个配置值，一个是`chatID`，通过使用你的 Telegram 账户发送`/start`给`@userinfobot`即可以获取自己的id，另一个是
-`token`，你的 Telegram bot 令牌，你会创建 Telegram bot 就知道怎么获取，不多赘述。
-如何创建一个 Telegram bot 请参考官方文档：[点我了解](https://core.telegram.org/bots#6-botfather)
+上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在 `.env` 文件中，
+将 `TELEGRAM_BOT_ENABLE` 的值改为 `true`，即可启用 Telegram bot，同样的，将 `MAIL_ENABLE` 的值改为 `false` 即可关闭邮件推送方式。
+Telegram bot 有两个配置项，一个是 `chatID` （对应 `.env` 文件中的 `TELEGRAM_CHAT_ID`），
+通过使用你的 Telegram 账户发送 `/start` 给 `@userinfobot` 即可以获取自己的id，
+另一个是 `token` （对应 `.env` 文件中的 `TELEGRAM_BOT_TOKEN`），你的 Telegram bot 令牌，你会创建 Telegram bot 就知道怎么获取，
+不多赘述。如何创建一个 Telegram bot 请参考：[官方文档](https://core.telegram.org/bots#6-botfather)
 
 *与通知相关的设置到此就完成了，下面可以愉快的配置本程序了* :)
 
@@ -176,11 +177,12 @@ $ systemctl restart crond
 
 > 解决方案：
 >
-> 先执行
+> 执行
 > ```bash
-> # 确定php的位置，一般输出为“php: /usr/local/php /usr/local/php/bin/php”，选长的那个即：/usr/local/php/bin/php
 > $ whereis php
+> # 确定php的位置，一般输出为“php: /usr/local/php /usr/local/php/bin/php”，选长的那个即：/usr/local/php/bin/php
 > ```
+> 
 > 现在我们知道php的路径是`/usr/local/php/bin/php`（根据你自己系统的实际情况，可能不同），然后修改表单任务里的命令，把
 > 
 > `00 09 * * * cd /data/wwwroot/freenom/ && php run > freenom_crontab.log 2>&1`

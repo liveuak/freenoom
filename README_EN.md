@@ -70,12 +70,14 @@ After logging in to Google Mail, go to [this page](https://accounts.google.com/b
 
 ### 🤶 Telegram bot
 ***
-If you don't want to use email push, you can also use Telegram bot. In the `config.php` file, 
-replace the Change the `enable` value to `true` to enable the Telegram bot. Similarly, 
-change the value of `enable` under` mail` to `false` to disable the email push method. Telegram bot corresponds to two configuration values, 
-one is `chatID`, you can get your own id by sending `/start` to `@userinfobot` using your Telegram account, 
-and the other is `token`, your Telegram bot token, how to obtain a token and how to create a Telegram bot, 
-please refer to the official document: [click me to know](https://core.telegram.org/bots#6-botfather)
+If you don't want to use email push, you can also use Telegram bot. In the `.env` file,
+Change the value of `TELEGRAM_BOT_ENABLE` to `true` to enable the Telegram bot.
+Similarly, change the value of `MAIL_ENABLE` to `false` to disable the mail push method.
+Telegram bot has two configuration items, one is `chatID` (corresponding to `TELEGRAM_CHAT_ID` in `.env` file),
+You can get your own id by sending `/start` to `@userinfobot` using your Telegram account,
+The other is `token` (corresponding to `TELEGRAM_BOT_TOKEN` in the `.env` file), 
+your Telegram bot token, how to create a Telegram bot and how to get the token please refer to: 
+[Official Document](https://core.telegram.org/bots#6-botfather)
 
 *This completes the settings related to notifications, followed by the configuration related to this program* :)
 
@@ -140,8 +142,8 @@ check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freen
 >
 > execute
 > ```bash
-> # Determine the location of php, the general output is "php: /usr/local/php /usr/local/php/bin/php", we choose: /usr/local/php/bin/php
 > $ whereis php
+> # Determine the location of php, the general output is "php: /usr/local/php /usr/local/php/bin/php", we choose: /usr/local/php/bin/php
 > ```
 > Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your own system), 
 > and then modify the commands in the form task, change
