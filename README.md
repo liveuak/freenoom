@@ -58,7 +58,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的设置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用账户加授权码的方式登录，
 `谷歌邮箱`使用账户加密码的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。
 
-#### 设置Gmail
+<details>
+  <summary><h4>设置Gmail</h4></summary>
 ***
 1、在`设置>转发和POP/IMAP`中，勾选
 - 对所有邮件启用 POP 
@@ -78,6 +79,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 > 不允许访问账户
 
 登录谷歌邮箱后，去[gmail的这个界面](https://accounts.google.com/b/0/DisplayUnlockCaptcha)点击允许。这种情况较为少见。
+</details>
 
 #### 设置QQ邮箱
 ***
