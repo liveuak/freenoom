@@ -138,7 +138,11 @@ check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freen
 - /bin/sh: php: command not found
 - /bin/sh: /usr/local/php: Is a directory
 
-> solution:
+*(Click to expand or collapse)*
+<details>
+    <summary>solution</summary>
+<br>
+
 >
 > execute
 > ```bash
@@ -156,6 +160,9 @@ check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freen
 > 
 > More information: [click here](https://stackoverflow.com/questions/7397469/why-is-crontab-not-executing-my-php-script)
 > 
+
+</details>
+
 Of course, if your `crontab` can correctly find the `php path` without error, you don't need to do anything.
 
 *So far, all the configurations have been completed, let's verify if the whole process works* :)
