@@ -221,7 +221,7 @@ $ systemctl restart crond
 > 更多参考：[点这里](https://stackoverflow.com/questions/7397469/why-is-crontab-not-executing-my-php-script)
 >
 
-<details>
+</details>
 
 当然，如果你的`计划任务`能正确找到`php路径`，没有错误，那你什么也不用做。
 
