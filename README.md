@@ -198,7 +198,11 @@ $ systemctl restart crond
 - /bin/sh: php: command not found
 - /bin/sh: /usr/local/php: Is a directory
 
-> 解决方案：
+*（点击即可展开或收起）*
+<details>
+    <summary>解决方案</summary>
+<br>
+
 >
 > 执行
 > ```bash
@@ -216,6 +220,9 @@ $ systemctl restart crond
 > 
 > 更多参考：[点这里](https://stackoverflow.com/questions/7397469/why-is-crontab-not-executing-my-php-script)
 >
+
+<details>
+
 当然，如果你的`计划任务`能正确找到`php路径`，没有错误，那你什么也不用做。
 
 *至此，所有的配置都已经完成，下面我们验证一下整个流程是否走通*:)
