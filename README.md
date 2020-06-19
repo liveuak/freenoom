@@ -249,12 +249,14 @@ $ cd /data/wwwroot/freenom/ && php run
 FREENOM_USERNAME、FREENOM_PASSWORD、MULTIPLE_ACCOUNTS、MAIL_USERNAME、MAIL_PASSWORD、TO、MAIL_ENABLE、TELEGRAM_CHAT_ID、
 TELEGRAM_BOT_TOKEN、TELEGRAM_BOT_ENABLE、NOTICE_FREQ
 
-（注：此处列出了所有可用的变量名，每个变量具体的含义以及格式请参考本项目的`.env.example`文件内的注释。另一个需要注意的是，`MAIL_USERNAME`、`MAIL_PASSWORD`（即发信机器人邮箱）尽可能使用`163邮箱`或者`QQ邮箱`，而非之前推荐的`Gmail`。
+（注：此处列出了所有可用的变量名，不配置则保持默认值，每个变量具体的含义以及格式或默认值请参考本项目的`.env.example`文件内的注释。另一个需要注意的是，`MAIL_USERNAME`、`MAIL_PASSWORD`（即发信机器人邮箱）尽可能使用`163邮箱`或者`QQ邮箱`，而非之前推荐的`Gmail`。
 因为谷歌的安全机制，每次在新设备登录 `Gmail` 都会先被限制，需要手动解除限制才行，
 而`Github Actions`每次创建的虚拟环境都会分配一个新的设备`IP`，相当于每次都是从新设备登录`Gmail`，
 而我们不可能每次都去手动为`Gmail`解除登录限制，所以这种机制会导致无法发出通知邮件）
 
-3、大喊一声作者好帅，给个`star`并把本项目推荐给更多的人（用的人越多，作者更新的动力越足），用省下的买`VPS`的巨款「 [砸向](#--捐赠-donate) 」作者 😝
+3、心里默念作者好帅，给个`star`并把本项目推荐给更多的人（用的人越多，作者更新的动力越足），将省下的买`VPS`的巨款「 [打赏一点儿](#--捐赠-donate) 」给作者 😝
+
+好了，做完上面三步后就不需要其它任何操作了。现在每天上午十点左右`Github Actions`会自动触发执行本项目，注意查收域名相关邮件。
 
 
 <hr>
