@@ -22,7 +22,7 @@ on:
     - cron: 00 02 * * *
 jobs:
   run-it:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     name: Run it on action
     steps:
       - name: Checkout master
