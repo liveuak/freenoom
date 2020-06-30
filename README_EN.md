@@ -9,47 +9,47 @@
 Documentation: English version | [中文版](https://github.com/luolongfei/freenom)
 </div>
 
-[📃 Why write this script](#-Why-write-this-script)
+[📃  Why write this script](#--Why-write-this-script)
 
-[🍭 Demo](#-Demo)
+[🍭  Demo](#--Demo)
 
-[🎁 Preparation](#-Preparation)
+[🎁  Preparation](#--Preparation)
 
-[📪 Setting up Gmail](#-Setting-up-Gmail)
+[📪  Setting up Gmail](#--Setting-up-Gmail)
 
-[🤶 Telegram bot](#-Telegram-bot)
+[🤶  Telegram bot](#--Telegram-bot)
 
-[🚧 Configuration script](#-Configuration-script)
+[🚧  Configuration script](#--Configuration-script)
 
-[🎈 Add scheduled task](#-Add-scheduled-task)
+[🎈  Add scheduled task](#--Add-scheduled-task)
 
-[☕ Verification](#-Verification)
+[☕  Verification](#--Verification)
 
-[❤ Donate](#-Donate)
+[❤  Donate](#--Donate)
 
-[🌚 Author](#-Author)
+[🌚  Author](#--Author)
 
-[🎉 Acknowledgements](#-Acknowledgements)
+[🎉  Acknowledgements](#--Acknowledgements)
 
-[🥝 Open source agreement](#-Open-source-agreement)
+[🥝  Open source agreement](#--Open-source-agreement)
 
 
-### 📃 Why write this script
+### 📃  Why write this script
 As we all know, Freenom is the only merchant on the planet that provides free top-level domain names, but it needs to be renewed every year for up to one year at a time. Since I applied for a bunch of domain names, and not at the same time,
 So I felt frustrated every time I renewed, so I wrote this automatic renewal script.
 
-### 🍭 Demo
+### 🍭  Demo
 ![Email example](https://s2.ax1x.com/2020/01/31/139Rrd.png "Email content")
 
 Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the program. In the case of a renewal success or failure email, the email will include the number of days that the domain name has not been renewed.
 
-### 🎁 Preparation
+### 🎁  Preparation
 - Email of robot: Used to send notification emails.
 - Your email: Used to receive notification emails sent by robots.
 - VPS: Any server can be used. The system recommends `Centos7`, and the PHP version must be` php7.1` or above.
 - No more
 
-### 📪 Setting up Gmail
+### 📪  Setting up Gmail
 ***
 1.In `Settings > Forwarding and POP/IMAP`, tick
 - Enable POP for all messages
@@ -68,18 +68,20 @@ Also, if prompted
 
 After logging in to Google Mail, go to [this page](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click Allow. This situation is relatively rare.
 
-### 🤶 Telegram bot
+### 🤶  Telegram bot
 ***
-If you don't want to use email push, you can also use Telegram bot. In the `config.php` file, 
-replace the Change the `enable` value to `true` to enable the Telegram bot. Similarly, 
-change the value of `enable` under` mail` to `false` to disable the email push method. Telegram bot corresponds to two configuration values, 
-one is `chatID`, you can get your own id by sending `/start` to `@userinfobot` using your Telegram account, 
-and the other is `token`, your Telegram bot token, how to obtain a token and how to create a Telegram bot, 
-please refer to the official document: [click me to know](https://core.telegram.org/bots#6-botfather)
+If you don't want to use email push, you can also use Telegram bot. In the `.env` file,
+Change the value of `TELEGRAM_BOT_ENABLE` to `true` to enable the Telegram bot.
+Similarly, change the value of `MAIL_ENABLE` to `false` to disable the mail push method.
+Telegram bot has two configuration items, one is `chatID` (corresponding to `TELEGRAM_CHAT_ID` in `.env` file),
+You can get your own id by sending `/start` to `@userinfobot` using your Telegram account,
+The other is `token` (corresponding to `TELEGRAM_BOT_TOKEN` in the `.env` file), 
+your Telegram bot token, how to create a Telegram bot and how to get the token please refer to: 
+[Official Document](https://core.telegram.org/bots#6-botfather)
 
 *This completes the settings related to notifications, followed by the configuration related to this program* :)
 
-### 🚧 Configuration script
+### 🚧  Configuration script
 All operations are performed under Centos7 system, other Linux distributions are similar
 #### Get the source code
 ```bash
@@ -105,7 +107,7 @@ $ vim .env
 # After editing, press "Esc" to return to the command mode, enter ":wq" and press Enter to save and exit. If you don't use vim editor, you can ask Uncle Google. :)
 ```
 
-### 🎈 Add scheduled task
+### 🎈  Add scheduled task
 #### Install crontabs and cronie
 ```bash
 $ yum -y install cronie crontabs
@@ -136,12 +138,16 @@ check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freen
 - /bin/sh: php: command not found
 - /bin/sh: /usr/local/php: Is a directory
 
-> solution:
+*(Click to expand or collapse)*
+<details>
+    <summary>solution</summary>
+<br>
+
 >
 > execute
 > ```bash
-> # Determine the location of php, the general output is "php: /usr/local/php /usr/local/php/bin/php", we choose: /usr/local/php/bin/php
 > $ whereis php
+> # Determine the location of php, the general output is "php: /usr/local/php /usr/local/php/bin/php", we choose: /usr/local/php/bin/php
 > ```
 > Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your own system), 
 > and then modify the commands in the form task, change
@@ -154,11 +160,14 @@ check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freen
 > 
 > More information: [click here](https://stackoverflow.com/questions/7397469/why-is-crontab-not-executing-my-php-script)
 > 
+
+</details>
+
 Of course, if your `crontab` can correctly find the `php path` without error, you don't need to do anything.
 
 *So far, all the configurations have been completed, let's verify if the whole process works* :)
 
-### ☕ Verification
+### ☕  Verification
 You can first change the value of `NOTICE_FREQ` in `.env` to 1 (Push notification every time the script is executed), and then execute
 ```bash
 $ cd /data/wwwroot/freenom/ && php run
@@ -168,20 +177,20 @@ If nothing else, you will receive an email about the domain name.
 If you encounter any problems or bugs, please mention [issues](https://github.com/luolongfei/freenom/issues). If freenom changes the algorithm and causes this project to fail,
 Please mention [issues](https://github.com/luolongfei/freenom/issues) to inform me that I will fix it in time and maintain this project for a long time. Welcome star ~
 
-### ❤ Donate
+### ❤  Donate
 
 #### PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 > Every time you spend money, you're casting a vote for the kind of world you want .-- Anna Lappe
 
 ![Every time you spend your money, you are voting for the world you want. ](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
 
-### 🌚 Author
+### 🌚  Author
 - Main program and framework: [@luolongfei](https://github.com/luolongfei)
 - English document: [@肖阿姨](#)
 
-### 🎉 Acknowledgements
+### 🎉  Acknowledgements
 - [PHPMailer](https://github.com/PHPMailer/PHPMailer/) (Mail sending function depends on this library)
 - [guzzle](https://github.com/guzzle/guzzle) (Curl library)
 
-### 🥝 Open source agreement
+### 🥝  Open source agreement
 [MIT](https://opensource.org/licenses/mit-license.php)
