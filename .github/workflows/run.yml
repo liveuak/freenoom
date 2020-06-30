@@ -26,9 +26,11 @@ jobs:
     name: Run it on action
     steps:
       - name: Checkout master
-        uses: actions/checkout@master
-      - name: PHP env
-        uses: franzliedke/gh-action-php@master
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.2'
       - name: Setting
         run: |
           echo 'Renew freenom domain name automatically.'
@@ -49,4 +51,4 @@ jobs:
           if [ '${{ secrets.NOTICE_FREQ }}' != '' ]; then sed -i "s/^NOTICE_FREQ=.*$/NOTICE_FREQ='${{ secrets.NOTICE_FREQ }}'/" .env; fi
       - name: Run
         run: |
-          php7.2 run
+          php run
