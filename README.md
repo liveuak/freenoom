@@ -244,17 +244,35 @@ $ cd /data/wwwroot/freenom/ && php run
 
 1、Fork 本仓库
 
-2、在你 Fork 的本仓库下的 `Settings` -> `Secrets` 页面追加以下几个`secret`变量
+2、在你 Fork 的本仓库下的 `Settings` -> `Secrets` 页面追加以下几个`secret`秘密环境变量
 
-FREENOM_USERNAME、FREENOM_PASSWORD、MULTIPLE_ACCOUNTS、MAIL_USERNAME、MAIL_PASSWORD、TO、MAIL_ENABLE、TELEGRAM_CHAT_ID、
-TELEGRAM_BOT_TOKEN、TELEGRAM_BOT_ENABLE、NOTICE_FREQ
+*（点击即可展开或收起）*
+<details>
+    <summary>点我查看需要添加的具体秘密变量</summary>
+<br>
+
+| 变量名 | 含义 | 默认值 | 是否必须 | 备注 |
+| :--- | :--- | :---: | :---: | :--- |
+| FREENOM_USERNAME | freenom 账户 | - | 是 ||
+| FREENOM_PASSWORD | freenom 密码 | - | 是 ||
+| MULTIPLE_ACCOUNTS | 多账户支持 | - | 否 | 多个账户和密码的格式必须是“`<账户1>@<密码1>\|<账户2>@<密码2>\|<账户3>@<密码3>`” |
+| MAIL_USERNAME | 机器人邮箱账户 | - | 是 ||
+| MAIL_PASSWORD | 机器人邮箱密码 | - | 是 | Gmail填密码，QQ邮箱或163邮箱填授权码 |
+| TO | 接收通知的邮箱 | - | 是 | 你自己最常用的邮箱，推荐使用`QQ邮箱`，用来接收机器人邮箱发出的域名相关邮件 |
+| MAIL_ENABLE | 是否启用邮件推送功能 | `true` | 是 | `true`：启用<br>`false`：不启用<br>如果设为`false`，不启用邮件推送功能，则上面的`MAIL_USERNAME`、`MAIL_PASSWORD`、`TO`变量变为非必须，可不设置 |
+| TELEGRAM_CHAT_ID | 你的`chat_id` | - | 否 | 通过发送`/start`给`@userinfobot`可以获取自己的`id` |
+| TELEGRAM_BOT_TOKEN | 你的`Telegram bot`的`token` | - | 否 ||
+| TELEGRAM_BOT_ENABLE | 是否启用`Telegram Bot`功能 | `false` | 否 | `true`：启用<br>`false`：不启用<br>同邮件推送功能，默认不启用，如果设为`true`，则必须设置上面的`TELEGRAM_CHAT_ID`和`TELEGRAM_BOT_TOKEN`变量 |
+| NOTICE_FREQ | 通知频率 | `1` | 否 | `0`：仅当有续期操作的时候<br>`1`：每次执行 |
 
 （注：此处列出了所有可用的变量名，不配置则保持默认值，每个变量具体的含义以及格式或默认值请参考本项目的`.env.example`文件内的注释。另一个需要注意的是，`MAIL_USERNAME`、`MAIL_PASSWORD`（即发信机器人邮箱）尽可能使用`163邮箱`或者`QQ邮箱`，而非之前推荐的`Gmail`。
 因为谷歌的安全机制，每次在新设备登录 `Gmail` 都会先被限制，需要手动解除限制才行，
 而`Github Actions`每次创建的虚拟环境都会分配一个新的设备`IP`，相当于每次都是从新设备登录`Gmail`，
 而我们不可能每次都去手动为`Gmail`解除登录限制，所以这种机制会导致无法发出通知邮件）
 
-3、心里默念作者好帅，给个`star`并把本项目推荐给更多的人（用的人越多，作者更新的动力越足），将省下的买`VPS`的巨款「 [打赏一点儿](#--捐赠-donate) 」给作者 😝
+</details>
+
+3、心里默念作者最帅，给个`star`并把本项目推荐给更多的人，用的人越多作者更新的动力越足。还可以「 [小额支持](#--捐赠-donate) 」作者
 
 好了，做完上面三步后就不需要其它任何操作了。现在每天上午十点左右`Github Actions`会自动触发执行本项目，注意查收域名相关邮件。
 
