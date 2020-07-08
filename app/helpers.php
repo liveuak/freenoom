@@ -81,6 +81,13 @@ if (!function_exists('system_log')) {
                 is_string($content) ? $content : json_encode($content),
                 $response ? json_encode($response, JSON_UNESCAPED_UNICODE) : '');
 
+            // 在 Github Actions 上运行，过滤敏感信息
+            if (env('ON_GITHUB_ACTIONS')) {
+                $msg = preg_replace_callback('/(?P<secret>[\w-.]{1,4}?)(?=@[\w-.]+)/i', function ($m) {
+                    return str_ireplace($m['secret'], str_repeat('*', strlen($m['secret'])), $m['secret']);
+                }, $msg);
+            }
+
             // 尝试为消息着色
             $c = PhpColor::instance()->getColorInstance();
             echo $c($msg)->colorize();

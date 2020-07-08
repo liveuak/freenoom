@@ -80,6 +80,8 @@ class FreeNom
             'verify' => config('verifySSL'),
             'debug' => config('debug')
         ]);
+
+        system_log(sprintf('当前程序版本 %s', self::VERSION));
     }
 
     /**
