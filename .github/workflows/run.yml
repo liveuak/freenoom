@@ -22,13 +22,15 @@ on:
     - cron: 00 02 * * *
 jobs:
   run-it:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     name: Run it on action
     steps:
       - name: Checkout master
-        uses: actions/checkout@master
-      - name: PHP env
-        uses: franzliedke/gh-action-php@master
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.2'
       - name: Setting
         run: |
           echo 'Renew freenom domain name automatically.'
@@ -50,4 +52,4 @@ jobs:
           sed -i "s/^ON_GITHUB_ACTIONS=.*$/ON_GITHUB_ACTIONS=true/" .env
       - name: Run
         run: |
-          php7.2 run
+          php run
