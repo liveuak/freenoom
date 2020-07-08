@@ -252,8 +252,8 @@ $ cd /data/wwwroot/freenom/ && php run
 
 | 变量名 | 含义 | 默认值 | 是否必须 | 备注 |
 | :---: | :---: | :---: | :---: | :---: |
-| FREENOM_USERNAME | freenom 账户 | - | 是 ||
-| FREENOM_PASSWORD | freenom 密码 | - | 是 ||
+| FREENOM_USERNAME | freenom 账户 | - | 是 | 只支持邮箱账户，不支持也不打算支持第三方社交账户登录 |
+| FREENOM_PASSWORD | freenom 密码 | - | 是 | 某些特殊字符可能需要转义，具体参考`.env.example`文件内的注释，应该没人会设置那么变态的密码吧 |
 | MULTIPLE_ACCOUNTS | 多账户支持 | - | 否 | 多个账户和密码的格式必须是“`<账户1>@<密码1>\|<账户2>@<密码2>\|<账户3>@<密码3>`”，如果设置了多账户，上面的`FREENOM_USERNAME`和`FREENOM_PASSWORD`可不设置 |
 | MAIL_USERNAME | 机器人邮箱账户 | - | 是 | 支持`Gmail`、`QQ邮箱`以及`163邮箱`，尽可能使用`163邮箱`或者`QQ邮箱`，而非之前推荐的`Gmail`。因为谷歌的安全机制，每次在新设备登录 `Gmail` 都会先被限制，需要手动解除限制才行，而`Github Actions`每次创建的虚拟环境都会分配一个新的设备`IP`，相当于每次都是从新设备登录`Gmail`，而我们不可能每次都去手动为`Gmail`解除登录限制，所以这种机制会导致无法发出通知邮件。具体的配置方法参考「 [配置发信邮箱](#--配置发信邮箱) 」 |
 | MAIL_PASSWORD | 机器人邮箱密码 | - | 是 | `Gmail`填密码，`QQ邮箱`或`163邮箱`填授权码 |
