@@ -247,7 +247,7 @@ $ cd /data/wwwroot/freenom/ && php run
 2、在你 Fork 的本仓库下的 `Settings` -> `Secrets` 页面追加以下几个`secret`秘密环境变量
 
 <details>
-    <summary>**点我查看需要添加的具体秘密变量**</summary>
+    <summary>点我查看需要添加的具体秘密变量</summary>
 <br>
 
 | 变量名 | 含义 | 默认值 | 是否必须 | 备注 |
