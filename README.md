@@ -240,7 +240,7 @@ $ cd /data/wwwroot/freenom/ && php run
 上面说了一堆都是基于你有自己的`VPS`的情况下，如果没有`VPS`又想自动续期`Freenom`的域名，或者单纯不想配置那么多东西，
 可以直接在`Github Actions`上跑本项目，`Github Actions`会为项目创建一个虚拟环境，并在执行后自动销毁。
 
-#### 只需简单 3 步
+#### 只需简单 6 步
 
 1、Fork 本仓库
 
@@ -268,9 +268,31 @@ $ cd /data/wwwroot/freenom/ && php run
 
 </details>
 
-3、心里默念作者最帅，给个`star`并把本项目推荐给更多的人，用的人越多作者更新的动力越足。还可以「 [小额支持](#--捐赠-donate) 」作者
+![设置秘密环境变量](https://s1.ax1x.com/2020/07/09/Ue20Cd.png "设置秘密环境变量")
 
-好了，做完上面三步后就不需要其它任何操作了。现在每天上午十点左右`Github Actions`会自动触发执行本项目，注意查收域名相关邮件。
+![新建变量画面](https://s1.ax1x.com/2020/07/09/UeRUs0.png "新建变量画面")
+
+3、同意启用 Actions
+
+![同意启用 Actions](https://s1.ax1x.com/2020/07/09/UeRusP.png "同意启用 Actions")
+
+4、修改项目 README.md 文件内容并提交一次，解决 Github Actions 计划任务的 Bug
+
+![修改 README.md 文件 01](https://s1.ax1x.com/2020/07/09/UeWO39.png "修改 README.md 文件 01")
+
+![修改 README.md 文件 02](https://s1.ax1x.com/2020/07/09/UefEjI.png "修改 README.md 文件 02")
+
+5、查看执行详情
+
+![查看执行详情 01](https://s1.ax1x.com/2020/07/09/UehHSJ.png "查看执行详情 01")
+
+![查看执行详情 02](https://s1.ax1x.com/2020/07/09/Ue4i6A.png "查看执行详情 02")
+
+![查看执行详情 03](https://s1.ax1x.com/2020/07/09/Ue4Q6s.png "查看执行详情 03")
+
+6、心里默念作者最帅，给个`star`并把本项目推荐给更多的人，用的人越多作者更新的动力越足
+
+好了，做完上面六步后就不需要其它任何操作了。现在每天上午十点左右`Github Actions`会自动触发执行本项目，注意查收域名相关邮件。
 
 
 <hr>
