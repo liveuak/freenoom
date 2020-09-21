@@ -9,8 +9,9 @@
 
 namespace Luolongfei\Lib;
 
+use Luolongfei\App\Exceptions\LlfException;
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception AS MailException;
+use PHPMailer\PHPMailer\Exception as MailException;
 
 class Mail
 {
@@ -87,7 +88,12 @@ class Mail
             return false;
         }
 
-        self::mail()->addAddress($to ?: config('mail.to'), config('mail.toName', '主人')); // 添加收件人，参数2选填
+        $to = $to ?: config('mail.to');
+        if (!$to) {
+            throw new LlfException(env('ON_GITHUB_ACTIONS') ? 34520011 : 34520012);
+        }
+
+        self::mail()->addAddress($to, config('mail.toName', '主人')); // 添加收件人，参数2选填
         self::mail()->addReplyTo(config('mail.replyTo', 'mybsdc@qq.com'), config('mail.replyToName', '作者')); // 备用回复地址，收到的回复的邮件将被发到此地址
 
         /**
@@ -127,5 +133,7 @@ class Mail
         self::mail()->msgHTML($message, APP_PATH . '/mail');
 
         if (!self::mail()->send()) throw new MailException(self::mail()->ErrorInfo);
+
+        return true;
     }
 }
