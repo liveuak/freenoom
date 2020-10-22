@@ -331,3 +331,7 @@ $ cd /data/wwwroot/freenom/ && php run
 
 ### 🥝  开源协议
 [MIT](https://opensource.org/licenses/mit-license.php)
+
+### ⏳  Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/luolongfei/freenom.svg)](https://starchart.cc/luolongfei/freenom)
