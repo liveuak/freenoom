@@ -37,7 +37,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 [🥝  开源协议](#--开源协议)
 
-[⏳  趋势](#--stargazers-over-time)
+[⏳  Stargazers over time](#--stargazers-over-time)
 
 
 ### 📃  前言
@@ -334,6 +334,6 @@ $ cd /data/wwwroot/freenom/ && php run
 ### 🥝  开源协议
 [MIT](https://opensource.org/licenses/mit-license.php)
 
-### ⏳  趋势
+### ⏳  Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/luolongfei/freenom.svg)](https://starchart.cc/luolongfei/freenom)
